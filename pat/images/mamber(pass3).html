@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0,
+                 maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>PetCare 회원가입 패스워드 3</title>
+
+    <style>
+        /* ========================================
+           기본 초기화
+        ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            background-color: #ffffff;
+            color: #333333;
+            font-family:
+                Pretendard,
+                "Noto Sans KR",
+                "Apple SD Gothic Neo",
+                Arial,
+                sans-serif;
+        }
+
+        input,
+        button {
+            border: 0;
+            outline: none;
+            background: none;
+            color: inherit;
+            font: inherit;
+        }
+
+        button,
+        label,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ========================================
+           모바일 앱 전용 화면
+           100vh 대신 100svh 사용
+        ======================================== */
+        .signup-screen {
+            position: relative;
+            width: 100%;
+            height: 100svh;
+            min-height: 100svh;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        /* ========================================
+           상단 제목
+        ======================================== */
+        .signup-header {
+            position: absolute;
+            top: 64px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .signup-title {
+            color: #111111;
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1.8px;
+        }
+
+        /* ========================================
+           회원가입 폼
+        ======================================== */
+        .signup-form {
+            position: absolute;
+            top: 163px;
+            left: 19px;
+            width: calc(100% - 38px);
+        }
+
+        .input-group {
+            width: 100%;
+            height: 70px;
+            margin-bottom: 29px;
+        }
+
+        .signup-input {
+            width: 100%;
+            height: 100%;
+            padding: 0 20px;
+            border: 1px solid #dddddd;
+            border-radius: 16px;
+            background-color: #ffffff;
+            color: #474747;
+            font-size: 21px;
+            font-weight: 700;
+            letter-spacing: -0.8px;
+        }
+
+        .signup-input::placeholder {
+            color: #888888;
+            opacity: 1;
+            font-weight: 700;
+        }
+
+        .signup-input:focus {
+            border-color: #49a477;
+        }
+
+        /* 아이디 입력 완료 */
+        .id-complete {
+            color: #4a4a4a;
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        /* 비밀번호 입력 완료 */
+        .password-complete {
+            color: #282828;
+            font-size: 27px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        /* ========================================
+           약관 동의
+        ======================================== */
+        .terms-area {
+            display: flex;
+            align-items: flex-start;
+            width: 100%;
+            margin-top: 28px;
+            padding-left: 7px;
+        }
+
+        .terms-checkbox {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            opacity: 0;
+        }
+
+        .terms-check-design {
+            position: relative;
+            flex: 0 0 auto;
+            width: 21px;
+            height: 21px;
+            margin-top: 9px;
+            margin-right: 18px;
+            border: 2px solid #8c8c8c;
+            border-radius: 50%;
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+
+        .terms-checkbox:checked + .terms-check-design {
+            border-color: #49a477;
+            background-color: #49a477;
+        }
+
+        .terms-checkbox:checked + .terms-check-design::after {
+            content: "";
+            position: absolute;
+            top: 3px;
+            left: 6px;
+            width: 5px;
+            height: 9px;
+            border-right: 2px solid #ffffff;
+            border-bottom: 2px solid #ffffff;
+            transform: rotate(45deg);
+        }
+
+        .terms-text {
+            color: #888888;
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.4;
+            letter-spacing: -0.9px;
+            cursor: pointer;
+        }
+
+        /* ========================================
+           가입하기 버튼
+        ======================================== */
+        .signup-button {
+            position: absolute;
+            right: 19px;
+            bottom: 40px;
+            left: 19px;
+            width: calc(100% - 38px);
+            height: 58px;
+            border-radius: 15px;
+            background-color: #49a477;
+            color: #ffffff;
+            font-size: 29px;
+            font-weight: 800;
+            line-height: 58px;
+            text-align: center;
+            letter-spacing: -1.4px;
+            cursor: pointer;
+        }
+
+        .signup-button:active {
+            background-color: #3e936a;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="signup-screen">
+
+        <!-- 상단 제목 -->
+        <header class="signup-header">
+            <h1 class="signup-title">회원가입</h1>
+        </header>
+
+        <!-- 회원가입 폼 -->
+        <form
+            id="signupForm"
+            class="signup-form"
+            action="#"
+            method="post"
+        >
+
+            <!-- 아이디 입력 완료 -->
+            <div class="input-group">
+                <input
+                    type="text"
+                    name="userId"
+                    class="signup-input id-complete"
+                    value="gunks5000"
+                    autocomplete="username"
+                    aria-label="아이디"
+                    required
+                >
+            </div>
+
+            <!-- 비밀번호 입력 완료 -->
+            <div class="input-group">
+                <input
+                    type="password"
+                    name="password"
+                    class="signup-input password-complete"
+                    value="123456789"
+                    autocomplete="new-password"
+                    aria-label="비밀번호 입력"
+                    required
+                >
+            </div>
+
+            <!-- 비밀번호 확인 입력 완료 -->
+            <div class="input-group">
+                <input
+                    type="password"
+                    name="passwordConfirm"
+                    class="signup-input password-complete"
+                    value="123456789"
+                    autocomplete="new-password"
+                    aria-label="비밀번호 확인"
+                    required
+                >
+            </div>
+
+            <!-- 이름 입력 전 상태 -->
+            <div class="input-group">
+                <input
+                    type="text"
+                    name="userName"
+                    class="signup-input"
+                    placeholder="이름 입력"
+                    autocomplete="name"
+                    aria-label="이름 입력"
+                    required
+                >
+            </div>
+
+            <!-- 약관 동의 -->
+            <div class="terms-area">
+                <input
+                    type="checkbox"
+                    id="termsAgreement"
+                    name="termsAgreement"
+                    class="terms-checkbox"
+                    required
+                >
+
+                <label
+                    for="termsAgreement"
+                    class="terms-check-design"
+                    aria-hidden="true"
+                ></label>
+
+                <label
+                    for="termsAgreement"
+                    class="terms-text"
+                >
+                    이용약관 및 개인정보 처리방법<br>
+                    등록(필수)
+                </label>
+            </div>
+
+        </form>
+
+        <!-- 가입하기 버튼 -->
+        <button
+            type="submit"
+            class="signup-button"
+            form="signupForm"
+        >
+            가입하기
+        </button>
+
+    </main>
+</body>
+</html>

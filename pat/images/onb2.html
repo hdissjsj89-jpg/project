@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 모바일 앱 전용 화면 설정 -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>PetCare 온보딩 02</title>
+
+    <style>
+        /* =========================================
+           기본 초기화
+        ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            background-color: #ffffff;
+            font-family:
+                Pretendard,
+                "Noto Sans KR",
+                "Apple SD Gothic Neo",
+                Arial,
+                sans-serif;
+        }
+
+        button {
+            border: 0;
+            padding: 0;
+            background: none;
+            font: inherit;
+        }
+
+        /* =========================================
+           모바일 전용 온보딩 화면
+           기준 시안: 390 × 844px
+        ========================================= */
+        .onboarding-screen {
+            position: relative;
+            width: 100%;
+            height: 844px;
+            min-height: 844px;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        /* =========================================
+           상단 제목 및 설명
+        ========================================= */
+        .onboarding-header {
+            position: absolute;
+            top: 61px;
+            left: 0;
+            width: 100%;
+            padding: 0 24px;
+            text-align: center;
+        }
+
+        .onboarding-title {
+            color: #111111;
+            font-size: 31px;
+            font-weight: 800;
+            line-height: 1.25;
+            letter-spacing: -1.7px;
+        }
+
+        .onboarding-description {
+            margin-top: 38px;
+            color: #8c8c8c;
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1.65;
+            letter-spacing: -1.1px;
+        }
+
+        /* =========================================
+           중앙 이미지 영역
+        ========================================= */
+        .visual-area {
+            position: absolute;
+            top: 264px;
+            left: 50%;
+            width: 290px;
+            height: 372px;
+            overflow: hidden;
+            transform: translateX(-50%);
+        }
+
+        .visual-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* =========================================
+           페이지 인디케이터
+        ========================================= */
+        .pagination {
+            position: absolute;
+            bottom: 111px;
+            left: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            transform: translateX(-50%);
+        }
+
+        .pagination-dot {
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            background-color: #e7e7e9;
+        }
+
+        .pagination-dot.active {
+            background-color: #4caf73;
+        }
+
+        /* =========================================
+           하단 다음 버튼
+        ========================================= */
+        .next-button {
+            position: absolute;
+            right: 21px;
+            bottom: 37px;
+            left: 18px;
+            width: calc(100% - 39px);
+            height: 57px;
+            border-radius: 15px;
+            background-color: #49a477;
+            color: #ffffff;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 57px;
+            text-align: center;
+            letter-spacing: -1.5px;
+            cursor: pointer;
+        }
+
+        .next-button:active {
+            background-color: #3f946a;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="onboarding-screen">
+
+        <!-- 상단 제목과 설명 -->
+        <header class="onboarding-header">
+            <h1 class="onboarding-title">
+                중요한 일정 알림
+            </h1>
+
+            <p class="onboarding-description">
+                예방접종, 약 복용, 정기검진<br>
+                놓치지 않도록 알려드려요.
+            </p>
+        </header>
+
+        <!-- 중앙 온보딩 이미지 -->
+        <section class="visual-area">
+            <img
+                src="./onb(2).png"
+                alt="일정 알림을 표현한 초록색 알림 벨과 시계"
+                class="visual-image"
+            >
+        </section>
+
+        <!-- 온보딩 페이지 표시 -->
+        <div class="pagination" aria-label="온보딩 3페이지 중 2페이지">
+            <span class="pagination-dot"></span>
+            <span class="pagination-dot active"></span>
+            <span class="pagination-dot"></span>
+        </div>
+
+        <!-- 다음 버튼 -->
+        <button type="button" class="next-button">
+            다음
+        </button>
+
+    </main>
+    <script>
+        /* ==========================================
+   Onboarding02 → Onboarding03 자동 이동
+   3초 후 자동 이동
+========================================== */
+
+window.addEventListener("load", function () {
+
+    setTimeout(function () {
+
+        // 온보딩 세 번째 화면으로 이동
+        window.location.href = "./onb3.html";
+
+    }, 3000);
+
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0,
+                 maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>PetCare 알림</title>
+
+    <style>
+        /* ========================================
+           기본 초기화
+        ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            background-color: #ffffff;
+            color: #111111;
+            font-family:
+                Pretendard,
+                "Noto Sans KR",
+                "Apple SD Gothic Neo",
+                Arial,
+                sans-serif;
+        }
+
+        a,
+        button {
+            border: 0;
+            padding: 0;
+            background: none;
+            color: inherit;
+            font: inherit;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        img {
+            display: block;
+        }
+
+        /* ========================================
+           모바일 앱 전용 화면
+           100vh 대신 100svh 사용
+        ======================================== */
+        .app {
+            position: relative;
+            width: 100%;
+            height: 100svh;
+            min-height: 100svh;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        /* ========================================
+           상단 영역
+        ======================================== */
+        .top-area {
+            width: 100%;
+            padding: 34px 19px 0;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+        }
+
+        .back-icon {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        /* ========================================
+           상단 카테고리 탭
+        ======================================== */
+        .category-tabs {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            width: 100%;
+            margin-top: 48px;
+        }
+
+        .category-tab {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 60px;
+            border: 1px solid #bbbbbb;
+            border-radius: 8px;
+            background-color: #eeeeee;
+            color: #444444;
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+        }
+
+        .category-tab.active {
+            border-color: #4caf73;
+            background-color: #4caf73;
+            color: #ffffff;
+        }
+
+        .category-tab:active {
+            opacity: 0.85;
+        }
+
+        /* ========================================
+           본문 메뉴 영역
+        ======================================== */
+        .menu-section {
+            width: 100%;
+            margin-top: 64px;
+            padding: 0 47px;
+        }
+
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 46px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            min-height: 34px;
+        }
+
+        .menu-icon-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            width: 22px;
+            height: 22px;
+            margin-right: 20px;
+        }
+
+        .menu-icon {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        .menu-text {
+            color: #111111;
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1.45;
+            letter-spacing: -0.8px;
+        }
+
+        .menu-item:active {
+            opacity: 0.6;
+        }
+
+        /* ========================================
+           하단 내비게이션
+        ======================================== */
+        .bottom-navigation {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            width: 100%;
+            height: 116px;
+            border-top: 1px solid #dddddd;
+            background-color: #ffffff;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 12px;
+            color: #111111;
+        }
+
+        .nav-item.active {
+            color: #29a66d;
+        }
+
+        .nav-icon {
+            width: 27px;
+            height: 27px;
+            object-fit: contain;
+        }
+
+        .nav-label {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="app">
+
+        <!-- 상단 영역 -->
+        <header class="top-area">
+
+            <!-- 이전 MY 화면으로 이동 -->
+            <a
+                href="./mypage.html"
+                class="back-button"
+                aria-label="MY 화면으로 돌아가기"
+            >
+                <img
+                    src="./icons/icon-back.svg"
+                    alt=""
+                    class="back-icon"
+                >
+            </a>
+
+            <!-- 상단 카테고리 -->
+            <nav class="category-tabs" aria-label="카테고리 메뉴">
+
+                <a
+                    href="./notification-main.html"
+                    class="category-tab active"
+                >
+                    메인
+                </a>
+
+                <a
+                    href="./notification-search.html"
+                    class="category-tab"
+                >
+                    검색
+                </a>
+
+                <a
+                    href="./notification-activity.html"
+                    class="category-tab"
+                >
+                    활동
+                </a>
+
+                <a
+                    href="./notification-travel.html"
+                    class="category-tab"
+                >
+                    여행
+                </a>
+
+            </nav>
+        </header>
+
+        <!-- MY 메뉴 -->
+        <section class="menu-section">
+            <div class="menu-list">
+
+                <!-- 마이 홈 -->
+                <a
+                    href="./mypage.html"
+                    class="menu-item"
+                    aria-label="마이 홈으로 이동"
+                >
+                    <span class="menu-icon-wrap">
+                        <img
+                            src="./icons/icon-my-home.svg"
+                            alt=""
+                            class="menu-icon"
+                        >
+                    </span>
+
+                    <span class="menu-text">
+                        마이 홈<br>
+                        등록된 기기 및 정보
+                    </span>
+                </a>
+
+                <!-- 즐겨찾기 -->
+                <a
+                    href="./favorites.html"
+                    class="menu-item"
+                    aria-label="즐겨찾기로 이동"
+                >
+                    <span class="menu-icon-wrap">
+                        <img
+                            src="./icons/icon-favorite-add.svg"
+                            alt=""
+                            class="menu-icon"
+                        >
+                    </span>
+
+                    <span class="menu-text">즐겨찾기</span>
+                </a>
+
+                <!-- 프로필 정보 -->
+                <a
+                    href="./profile.html"
+                    class="menu-item"
+                    aria-label="프로필 정보로 이동"
+                >
+                    <span class="menu-icon-wrap">
+                        <img
+                            src="./icons/icon-profile.svg"
+                            alt=""
+                            class="menu-icon"
+                        >
+                    </span>
+
+                    <span class="menu-text">프로필 정보</span>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- 하단 내비게이션 -->
+        <nav class="bottom-navigation" aria-label="하단 주요 메뉴">
+
+            <!-- 홈 -->
+            <a
+                href="./home.html"
+                class="nav-item active"
+                aria-label="홈 화면으로 이동"
+            >
+                <img
+                    src="./icons/icon-home-active.svg"
+                    alt=""
+                    class="nav-icon"
+                >
+
+                <span class="nav-label">홈</span>
+            </a>
+
+            <!-- 탐색 -->
+            <a
+                href="./search.html"
+                class="nav-item"
+                aria-label="탐색 화면으로 이동"
+            >
+                <img
+                    src="./icons/icon-search.svg"
+                    alt=""
+                    class="nav-icon"
+                >
+
+                <span class="nav-label">탐색</span>
+            </a>
+
+            <!-- 저장 -->
+            <a
+                href="./saved.html"
+                class="nav-item"
+                aria-label="저장 화면으로 이동"
+            >
+                <img
+                    src="./icons/icon-bookmark.svg"
+                    alt=""
+                    class="nav-icon"
+                >
+
+                <span class="nav-label">저장</span>
+            </a>
+
+            <!-- MY -->
+            <a
+                href="./mypage.html"
+                class="nav-item"
+                aria-label="MY 화면으로 이동"
+            >
+                <img
+                    src="./icons/icon-my.svg"
+                    alt=""
+                    class="nav-icon"
+                >
+
+                <span class="nav-label">MY</span>
+            </a>
+
+        </nav>
+
+    </main>
+</body>
+</html>

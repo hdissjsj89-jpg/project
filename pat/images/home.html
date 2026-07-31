@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0,
+                 maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>PetCare MY 홈</title>
+
+    <style>
+        /* ========================================
+           기본 초기화
+        ======================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            overflow: hidden;
+            background-color: #ffffff;
+            color: #3f3f3f;
+            font-family:
+                Pretendard,
+                "Noto Sans KR",
+                "Apple SD Gothic Neo",
+                Arial,
+                sans-serif;
+        }
+
+        a,
+        button {
+            border: 0;
+            padding: 0;
+            background: none;
+            color: inherit;
+            font: inherit;
+            text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        img {
+            display: block;
+        }
+
+        /* ========================================
+           모바일 앱 전용 화면
+           100vh 대신 100svh 사용
+        ======================================== */
+        .app {
+            position: relative;
+            width: 100%;
+            height: 100svh;
+            min-height: 100svh;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        /* ========================================
+           상단 헤더
+        ======================================== */
+        .top-header {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 96px;
+            background-color: #ffffff;
+        }
+
+        .page-title {
+            color: #111111;
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -1px;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 49px;
+            left: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+        }
+
+        .back-icon {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        /* ========================================
+           스크롤 콘텐츠 영역
+        ======================================== */
+        .main-content {
+            width: 100%;
+            height: 100%;
+            padding: 96px 19px 135px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            scrollbar-width: none;
+        }
+
+        .main-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* ========================================
+           프로필 영역
+        ======================================== */
+        .profile-section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            min-height: 126px;
+        }
+
+        .profile-image-wrap {
+            flex: 0 0 auto;
+            width: 106px;
+            height: 106px;
+            overflow: hidden;
+            border-radius: 50%;
+            background-color: #f2f8f5;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .profile-info {
+            margin-left: 9px;
+        }
+
+        .pet-name {
+            color: #444444;
+            font-size: 30px;
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -1.5px;
+        }
+
+        .pet-detail {
+            margin-top: 3px;
+            color: #858585;
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.8px;
+        }
+
+        .notification-button {
+            position: absolute;
+            top: 6px;
+            right: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+        }
+
+        .notification-icon {
+            width: 26px;
+            height: 26px;
+            object-fit: contain;
+        }
+
+        /* ========================================
+           공통 섹션
+        ======================================== */
+        .section {
+            width: 100%;
+        }
+
+        .today-section {
+            margin-top: 27px;
+        }
+
+        .feature-section {
+            margin-top: 31px;
+            padding: 0 10px;
+        }
+
+        .section-title {
+            color: #444444;
+            font-size: 21px;
+            font-weight: 800;
+            line-height: 1.3;
+            letter-spacing: -1px;
+        }
+
+        /* ========================================
+           오늘의 할 일 카드
+        ======================================== */
+        .schedule-list {
+            display: flex;
+            flex-direction: column;
+            gap: 17px;
+            margin-top: 13px;
+        }
+
+        .schedule-card {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 65px;
+            padding: 0 18px;
+            border: 2px solid #e6e6e6;
+            border-radius: 16px;
+            background-color: #ffffff;
+            box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.055);
+        }
+
+        .schedule-card:active {
+            background-color: #f8fbf9;
+        }
+
+        .schedule-icon-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+            width: 27px;
+            height: 27px;
+            margin-right: 17px;
+        }
+
+        .schedule-icon {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+        }
+
+        .schedule-name {
+            color: #555555;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -0.8px;
+        }
+
+        .schedule-time {
+            margin-left: auto;
+            color: #808080;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        /* ========================================
+           주요 기능
+        ======================================== */
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 100%;
+            margin-top: 18px;
+        }
+
+        .feature-item {
+            min-width: 0;
+            text-align: center;
+        }
+
+        .feature-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .feature-icon-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 75px;
+            height: 75px;
+            border: 2px solid #e6e6e6;
+            border-radius: 15px;
+            background-color: #ffffff;
+            box-shadow: 3px 4px 0 rgba(0, 0, 0, 0.055);
+        }
+
+        .feature-link:active .feature-icon-box {
+            background-color: #f8fbf9;
+        }
+
+        .feature-icon {
+            width: 29px;
+            height: 29px;
+            object-fit: contain;
+        }
+
+        .feature-label {
+            margin-top: 7px;
+            color: #222222;
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.8px;
+            white-space: nowrap;
+        }
+
+        /* ========================================
+           하단 내비게이션
+        ======================================== */
+        .bottom-navigation {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 30;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            width: 100%;
+            height: 116px;
+            border-top: 1px solid #dedede;
+            background-color: #ffffff;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 13px;
+            color: #111111;
+        }
+
+        .nav-item.active {
+            color: #28a56d;
+        }
+
+        .nav-icon {
+            width: 27px;
+            height: 27px;
+            object-fit: contain;
+        }
+
+        .nav-label {
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="app">
+
+        <!-- 상단 헤더 -->
+        <header class="top-header">
+
+            <!-- 로그인 화면으로 돌아가는 이전 버튼 -->
+            <a
+                href="./log.html"
+                class="back-button"
+                aria-label="로그인 화면으로 돌아가기"
+            >
+                <img
+                    src="./back.svg"
+                    alt=""
+                    class="back-icon"
+                >
+            </a>
+
+            <h1 class="page-title">my</h1>
+        </header>
+
+        <!-- 스크롤 가능한 본문 -->
+        <div class="main-content">
+
+            <!-- 반려동물 프로필 -->
+            <section class="profile-section">
+
+                <div class="profile-image-wrap">
+                    <img
+                        src="./pat(s).png"
+                        alt="반려견 초코 프로필 사진"
+                        class="profile-image"
+                    >
+                </div>
+
+                <div class="profile-info">
+                    <h2 class="pet-name">초코</h2>
+                    <p class="pet-detail">말티즈 · 3살</p>
+                </div>
+
+                <!-- 알림 페이지 이동 -->
+                <a
+                    href="./notification.html"
+                    class="notification-button"
+                    aria-label="알림 화면으로 이동"
+                >
+                    <img
+                        src="./icons/icon-notification.svg"
+                        alt=""
+                        class="notification-icon"
+                    >
+                </a>
+
+            </section>
+
+            <!-- 오늘의 할 일 -->
+            <section class="section today-section">
+                <h2 class="section-title">오늘의 할 일</h2>
+
+                <div class="schedule-list">
+
+                    <!-- 약 복용 -->
+                    <a href="./medicine.html" class="schedule-card">
+                        <span class="schedule-icon-wrap">
+                            <img
+                                src="./icons/icon-medicine.svg"
+                                alt=""
+                                class="schedule-icon"
+                            >
+                        </span>
+
+                        <span class="schedule-name">약 복용</span>
+                        <span class="schedule-time">10:00</span>
+                    </a>
+
+                    <!-- 산책 -->
+                    <a href="./walk.html" class="schedule-card">
+                        <span class="schedule-icon-wrap">
+                            <img
+                                src="./icons/icon-walk.svg"
+                                alt=""
+                                class="schedule-icon"
+                            >
+                        </span>
+
+                        <span class="schedule-name">산책</span>
+                        <span class="schedule-time">16:00</span>
+                    </a>
+
+                    <!-- 정기검진 -->
+                    <a href="./checkup.html" class="schedule-card">
+                        <span class="schedule-icon-wrap">
+                            <img
+                                src="./icons/icon-checkup.svg"
+                                alt=""
+                                class="schedule-icon"
+                            >
+                        </span>
+
+                        <span class="schedule-name">정기검진</span>
+                        <span class="schedule-time">D - 15</span>
+                    </a>
+
+                </div>
+            </section>
+
+            <!-- 주요 기능 -->
+            <section class="section feature-section">
+                <h2 class="section-title">주요 기능</h2>
+
+                <div class="feature-list">
+
+                    <!-- 건강기록 -->
+                    <div class="feature-item">
+                        <a
+                            href="./health-record.html"
+                            class="feature-link"
+                            aria-label="건강기록 화면으로 이동"
+                        >
+                            <span class="feature-icon-box">
+                                <img
+                                    src="./icons/icon-health-record.svg"
+                                    alt=""
+                                    class="feature-icon"
+                                >
+                            </span>
+
+                            <span class="feature-label">건강기록</span>
+                        </a>
+                    </div>
+
+                    <!-- 병원 찾기 -->
+                    <div class="feature-item">
+                        <a
+                            href="./hospital-search.html"
+                            class="feature-link"
+                            aria-label="병원 찾기 화면으로 이동"
+                        >
+                            <span class="feature-icon-box">
+                                <img
+                                    src="./icons/icon-hospital.svg"
+                                    alt=""
+                                    class="feature-icon"
+                                >
+                            </span>
+
+                            <span class="feature-label">병원 찾기</span>
+                        </a>
+                    </div>
+
+                    <!-- 예방접종 -->
+                    <div class="feature-item">
+                        <a
+                            href="./vaccination.html"
+                            class="feature-link"
+                            aria-label="예방접종 화면으로 이동"
+                        >
+                            <span class="feature-icon-box">
+                                <img
+                                    src="./icons/icon-vaccination.svg"
+                                    alt=""
+                                    class="feature-icon"
+                                >
+                            </span>
+
+                            <span class="feature-label">예방접종</span>
+                        </a>
+                    </div>
+
+                    <!-- 예약 -->
+                    <div class="feature-item">
+                        <a
+                            href="./reservation.html"
+                            class="feature-link"
+                            aria-label="예약 화면으로 이동"
+                        >
+                            <span class="feature-icon-box">
+                                <img
+                                    src="./icons/icon-calendar.svg"
+                                    alt=""
+                                    class="feature-icon"
+                                >
+                            </span>
+
+                            <span class="feature-label">예약</span>
+                        </a>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+
+        <!-- 하단 내비게이션 -->
+        <nav class="bottom-navigation" aria-label="하단 주요 메뉴">
+
+            <!-- 홈 -->
+            <a
+                href="./home.html"
+                class="nav-item active"
+                aria-label="홈 화면으로 이동"
+            >
+                <img
+                    src="./icons/icon-home-active.svg"
+                    alt=""
+                    class="nav-icon"
+                >
+                <span class="nav-label">홈</span>
+            </a>
+
+            <!-- 탐색 -->
+            <a
+                href="./search.html"
+                class="nav-item"
+                aria-label="탐색 화면으로 이동"
+            >
+                <img
+                    src="./icons/icon-search.svg"
+                    alt=""
+                    class="nav-icon"
+                >
+                <span class="nav-label">탐색</span>
+            </a>
+
+            <!-- 저장 -->
+            <a
+                href="./saved.html"
+                class="nav-item"
+                aria-label="저장 화면으로 이동"
+            >
+                <img
+                    src="./icons/icon-bookmark.svg"
+                    alt=""
+                    class="nav-icon"
+                >
+                <span class="nav-label">저장</span>
+            </a>
+
+            <!-- MY -->
+            <a
+                href="./mypage.html"
+                class="nav-item"
+                aria-label="MY 화면으로 이동"
+            >
+                <img
+                    src="./icons/icon-my.svg"
+                    alt=""
+                    class="nav-icon"
+                >
+                <span class="nav-label">MY</span>
+            </a>
+
+        </nav>
+
+    </main>
+</body>
+</html>
