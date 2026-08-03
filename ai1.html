@@ -2,45 +2,80 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>홈페이지</title>
+<title>표준 웹 기술</title>
 
 <style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"맑은 고딕", Arial, sans-serif;
+    background:#fff;
+    padding:8px;
+}
+
+.container{
+    width:320px;
+    padding:38px 12px;
+    border:1px solid #333;
+}
 
 h1{
-    text-align:center;
-    margin-top:30px;
+    font-size:30px;
+    font-weight:bold;
+    color:#000;
+    margin-bottom:42px;
 }
 
 p{
-    text-align:center;
-    margin-top:20px;
+    margin-bottom:48px;
+    color:#0000ff;
+    font-size:18px;
+    line-height:1;
 }
 
+p:last-child{
+    margin-bottom:0;
+}
+
+.initial{
+    display:inline-block;
+    font-size:50px;
+    font-weight:bold;
+    color:#ff0000;
+    line-height:0.8;
+    vertical-align:middle;
+    margin-right:2px;
+}
+
+.word{
+    vertical-align:middle;
+}
 </style>
 
 </head>
-
 <body>
 
-<h1>손병진 홈페이지에 오신 것을 환영합니다.</h1>
+<div class="container">
 
-<p>
-멋진 홈페이지가 되도록 노력.<br>
-부디 저의 홈페이지에서 좋은 시간 가지시기 바라며<br>
-가실 때에 따듯한 글을 남겨주시면 감사하겠습니다.
-</p>
+    <h1>표준 웹 기술</h1>
 
-<p>
-그리고 제 홈페이지에 궁금한 점이 있으시면<br>
-bestalpha@naver.com으로<br>
-메일 보내주시기 바랍니다.
-</p>
+    <p>
+        <span class="initial">H</span><span class="word">TML</span>
+    </p>
 
-<p>
-2023년 11월 09일
-</p>
+    <p>
+        <span class="initial">C</span><span class="word">SS</span>
+    </p>
 
-<h1>이젠컴퓨터학원 강의실에서</h1>
+    <p>
+        <span class="initial">J</span><span class="word">avascript</span>
+    </p>
+
+</div>
 
 </body>
 </html>
