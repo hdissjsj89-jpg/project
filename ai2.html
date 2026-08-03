@@ -1,78 +1,108 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>회사 소개</title>
 
-<title>진달래 꽃</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-<style>
+    body {
+      margin: 0;
+      padding-top: 34px;
+      background-color: #ffffff;
+      font-family: "맑은 고딕", Arial, sans-serif;
+    }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+    .company-box {
+      width: 630px;
+      margin: 0 auto;
+      padding: 42px 15px;
+      border: 1px dotted #999999;
+      background-color: #ffffff;
+    }
 
-body{
-    position:relative;
-    width:100%;
-    height:100vh;
-    font-family:"맑은 고딕", sans-serif;
-}
+    h1 {
+      margin: 0 0 23px;
+      font-size: 32px;
+      line-height: 1;
+      color: #000000;
+    }
 
-/* 제목 */
-h1{
-    text-align:center;
-    font-size:52px;
-    margin-top:30px;
-    font-weight:bold;
-}
+    .slogan {
+      margin: 0 0 20px;
+      padding: 8px 5px;
+      background-color: #222222;
+      color: #ffffff;
+      font-size: 23px;
+      font-weight: bold;
+      line-height: 1.2;
+    }
 
-/* 이름 */
-p:first-of-type{
-    position:absolute;
-    top:90px;
-    right:40px;
-    font-size:24px;
-    font-weight:bold;
-}
+    p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.9;
+      color: #111111;
+    }
 
-/* 시 */
-p:last-of-type{
-    text-align:center;
-    font-size:24px;
-    line-height:1.7;
-    margin-top:60px;
-}
+    .intro-first {
+      margin-bottom: 23px;
+    }
 
-</style>
+    .red {
+      color: #d71919;
+    }
 
+    h2 {
+      margin: 17px 0 19px;
+      color: #0000ff;
+      font-size: 25px;
+      line-height: 1.2;
+    }
+
+    .mission-text {
+      margin-bottom: 22px;
+    }
+
+    .blue {
+      color: #0000ff;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="company-box">
+    <h1>회사 소개</h1>
 
-<h1>진달래 꽃</h1>
+    <p class="slogan">“사람을 구체적으로 도와주는 책”</p>
 
-<p>지은이 : 김소월</p>
+    <p class="intro-first">
+      이지스퍼블리싱(주)의 책에는
+      <span class="red">‘사람들에게 구체적으로 도움이 되는 책’을 만든다는 출판 가치가 담겨 있습니다.</span>
+    </p>
 
-<p>
-나 보기가<br>
-역겨워<br>
-가실 때에는<br><br>
+    <p>
+      2010년 5월 출범한 이지스퍼블리싱(주)는 크게 두 영역의 책을 출간합니다.
+      IT 실용 도서와 학습 분야 도서입니다. IT 교재와 사진 책 등 실용서는
+      이지스퍼블리싱 브랜드로, 학습과 자녀교육 도서는 이지스에듀 브랜드로 출간하고 있습니다.
+    </p>
 
-말 없이<br>
-고이<br>
-보내 드리오리다<br><br>
+    <h2>이지스퍼블리싱의 미션</h2>
 
-영변에<br>
-약산<br>
-진달래 꽃<br><br>
+    <p class="mission-text">
+      사람에게 구체적으로 <span class="blue">도움</span>을 주는 책<br>
+      우리는 열심히 사는 사람들에게 도움이 되고 싶습니다.<br>
+      우리는 책을 출간하기 전에 질문할 것입니다.<br>
+      "이 책이 사람들에게 도움이 됩니까?"
+    </p>
 
-진달래<br>
-진달래 꽃<br>
-피웠네
-</p>
-
+    <p class="blue">
+      정보의 지름길을 만들어 빠르게 원하는 곳으로 가도록 도와주는 책,
+      손에 잡히는 이익을 얻을 수 있도록 도움을 되는 책을 만들고 싶습니다.
+    </p>
+  </div>
 </body>
 </html>
