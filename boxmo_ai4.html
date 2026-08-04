@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>박스 모델 실습</title>
+
+<style>
+/* 기본 여백 제거 */
+html,
+body,
+div,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+/* 전체 부모 박스 */
+.container {
+    width: 1000px;
+    margin: 0 auto;
+    border: 5px solid #000000;
+}
+
+/* 위쪽 div 영역 */
+.top-box {
+    width: 1000px;
+    height: 300px;
+    display: flex;
+    gap: 20px;
+    border-bottom: 5px solid #000000;
+}
+
+/* 위쪽 자식 박스 */
+.top-box div {
+    width: 235px;
+    height: 300px;
+    background-color: #edf6fc;
+}
+
+/* 아래쪽 순서 없는 목록 */
+.bottom-box {
+    width: 1000px;
+    height: 300px;
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+/* 아래쪽 li 박스 */
+.bottom-box li {
+    width: 235px;
+    height: 300px;
+    background-color: #ffb9c5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- 위쪽은 div 태그 -->
+    <div class="top-box">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <!-- 아래쪽은 순서 없는 목록 -->
+    <ul class="bottom-box">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+
+</div>
+
+</body>
+</html>
