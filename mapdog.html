@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0,
+        maximum-scale=1.0, minimum-scale=1.0,
+        user-scalable=no, viewport-fit=cover"
+    >
+
+    <title>반려견 병원 찾기</title>
+
+    <style>
+        /* ==============================
+           기본 설정
+        ============================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            min-width: 320px;
+            overflow: hidden;
+            background: #ffffff;
+            color: #111111;
+            font-family:
+                Pretendard,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Apple SD Gothic Neo",
+                "Noto Sans KR",
+                Arial,
+                sans-serif;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+        }
+
+        /* ==============================
+           전체 앱 화면
+        ============================== */
+        .app {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100svh;
+            min-height: 100svh;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        /* ==============================
+           상단 콘텐츠
+        ============================== */
+        .top-area {
+            flex-shrink: 0;
+            padding:
+                max(18px, env(safe-area-inset-top))
+                20px
+                14px;
+            background: #ffffff;
+            z-index: 20;
+        }
+
+        /* 뒤로가기 */
+        .back-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            margin-bottom: 9px;
+            border-radius: 50%;
+        }
+
+        .back-button:active {
+            background: #f4f4f4;
+        }
+
+        .back-button img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        /* 검색창 */
+        .search-form {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 64px;
+            padding: 0 18px;
+            border: 1px solid #dedede;
+            border-radius: 17px;
+            background: #ffffff;
+            box-shadow: 2px 4px 0 rgba(0, 0, 0, 0.08);
+        }
+
+        .search-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            margin-right: 14px;
+            object-fit: contain;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: #333333;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .search-input::placeholder {
+            color: #4d4d4d;
+            opacity: 1;
+        }
+
+        .search-submit {
+            display: none;
+        }
+
+        /* 필터 버튼 */
+        .filter-list {
+            display: flex;
+            gap: 16px;
+            width: 100%;
+            margin-top: 22px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .filter-list::-webkit-scrollbar {
+            display: none;
+        }
+
+        .filter-button {
+            position: relative;
+            flex: 0 0 auto;
+            min-width: 82px;
+            height: 63px;
+            padding: 0 20px;
+            border: 1px solid #c8c8c8;
+            border-radius: 16px;
+            background: #ffffff;
+            color: #111111;
+            font-size: 20px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .filter-button.active {
+            border: 2px solid #269d68;
+            font-weight: 700;
+        }
+
+        .filter-button.active::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -2px;
+            width: 38px;
+            height: 3px;
+            border-radius: 3px;
+            background: #269d68;
+            transform: translateX(-50%);
+        }
+
+        /* ==============================
+           지도 영역
+        ============================== */
+        .map-section {
+            position: relative;
+            flex: 1;
+            min-height: 0;
+            margin: 0 20px 8px;
+            overflow: hidden;
+            border-radius: 24px;
+            background: #eeeeee;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 위치 이동 버튼 */
+        .location-button {
+            position: absolute;
+            right: 16px;
+            bottom: 18px;
+            z-index: 15;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border: 1px solid #e2e2e2;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
+        }
+
+        .location-button img {
+            width: 23px;
+            height: 23px;
+            object-fit: contain;
+        }
+
+        /* 검색 결과 없음 */
+        .empty-message {
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            z-index: 15;
+            display: none;
+            width: calc(100% - 36px);
+            padding: 13px 15px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #555555;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+            transform: translateX(-50%);
+        }
+
+        .empty-message.show {
+            display: block;
+        }
+
+        /* 사용자 위치 표시 */
+        .current-location-marker {
+            position: relative;
+            width: 38px;
+            height: 38px;
+            border: 9px solid rgba(50, 132, 255, 0.24);
+            border-radius: 50%;
+            background: #ffffff;
+        }
+
+        .current-location-marker::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 13px;
+            height: 13px;
+            border: 3px solid #ffffff;
+            border-radius: 50%;
+            background: #287ff0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+            transform: translate(-50%, -50%);
+        }
+
+        /* 병원 정보창 */
+        .hospital-info {
+            width: 205px;
+            padding: 13px 14px;
+            border-radius: 13px;
+            background: #ffffff;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+        }
+
+        .hospital-info strong {
+            display: block;
+            overflow: hidden;
+            margin-bottom: 5px;
+            color: #111111;
+            font-size: 15px;
+            font-weight: 800;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .hospital-info span {
+            display: block;
+            overflow: hidden;
+            color: #666666;
+            font-size: 12px;
+            line-height: 1.45;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .hospital-info a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 30px;
+            margin-top: 9px;
+            padding: 0 12px;
+            border-radius: 8px;
+            background: #269d68;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        /* ==============================
+           하단 네비게이션
+        ============================== */
+        .bottom-nav {
+            flex-shrink: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            width: 100%;
+            min-height: 107px;
+            padding:
+                11px
+                16px
+                max(14px, env(safe-area-inset-bottom));
+            border-top: 1px solid #e4e4e4;
+            background: #ffffff;
+            z-index: 30;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            min-width: 0;
+            padding-top: 1px;
+            color: #181818;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .nav-item img {
+            width: 25px;
+            height: 25px;
+            object-fit: contain;
+        }
+
+        .nav-item.active {
+            color: #269d68;
+            font-weight: 700;
+        }
+
+        /* 로딩창 */
+        .loading {
+            position: absolute;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.88);
+            color: #333333;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .loading.hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+
+        <!-- 상단 영역 -->
+        <header class="top-area">
+
+            <!-- 이전 화면 경로 -->
+            <a
+                href="./home.html"
+                class="back-button"
+                aria-label="이전 화면으로 이동"
+            >
+                <img
+                    src="./icons/icon-back.png"
+                    alt=""
+                >
+            </a>
+
+            <!-- 병원 검색 -->
+            <form class="search-form" id="searchForm">
+                <img
+                    class="search-icon"
+                    src="./icons/icon-search.png"
+                    alt=""
+                >
+
+                <input
+                    type="search"
+                    class="search-input"
+                    id="searchInput"
+                    placeholder="지역,병원명,진료과목 검색"
+                    aria-label="지역, 병원명, 진료과목 검색"
+                    autocomplete="off"
+                >
+
+                <button
+                    type="submit"
+                    class="search-submit"
+                    aria-label="검색 실행"
+                >
+                    검색
+                </button>
+            </form>
+
+            <!-- 진료 필터 -->
+            <div class="filter-list" role="tablist">
+                <button
+                    type="button"
+                    class="filter-button active"
+                    data-filter="all"
+                >
+                    전체
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-button"
+                    data-filter="24hours"
+                >
+                    24시간
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-button"
+                    data-filter="night"
+                >
+                    야간진료
+                </button>
+            </div>
+        </header>
+
+        <!-- 지도 -->
+        <main class="map-section">
+            <div id="map" aria-label="동물병원 지도"></div>
+
+            <p class="empty-message" id="emptyMessage">
+                검색 결과가 없습니다.
+            </p>
+
+            <button
+                type="button"
+                class="location-button"
+                id="locationButton"
+                aria-label="현재 위치로 이동"
+            >
+                <img
+                    src="./icons/icon-current-location.png"
+                    alt=""
+                >
+            </button>
+        </main>
+
+        <!-- 하단 메뉴 -->
+        <nav class="bottom-nav" aria-label="하단 메뉴">
+
+            <a href="./home.html" class="nav-item">
+                <img
+                    src="./icons/icon-home.png"
+                    alt=""
+                >
+                <span>홈</span>
+            </a>
+
+            <a
+                href="./hospital-map.html"
+                class="nav-item active"
+                aria-current="page"
+            >
+                <img
+                    src="./icons/icon-search-active.png"
+                    alt=""
+                >
+                <span>탐색</span>
+            </a>
+
+            <a href="./saved.html" class="nav-item">
+                <img
+                    src="./icons/icon-bookmark.png"
+                    alt=""
+                >
+                <span>저장</span>
+            </a>
+
+            <a href="./my.html" class="nav-item">
+                <img
+                    src="./icons/icon-my.png"
+                    alt=""
+                >
+                <span>MY</span>
+            </a>
+        </nav>
+
+        <div class="loading" id="loading">
+            지도를 불러오는 중입니다.
+        </div>
+    </div>
+
+    <!--
+        YOUR_KAKAO_JAVASCRIPT_KEY 부분을
+        본인의 카카오 JavaScript 키로 변경하세요.
+
+        services 라이브러리는 키워드 장소 검색에 사용됩니다.
+    -->
+    <script
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f3f495721e788fb9f94d3f3ac0af044c"
+    ></script>
+
+    <script>
+       var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = { 
+        center: new kakao.maps.LatLng(37.54699, 127.09598), // 지도의 중심좌표
+        level: 4 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png', // 마커이미지의 주소입니다    
+    imageSize = new kakao.maps.Size(64, 69), // 마커이미지의 크기입니다
+    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      
+// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+    markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); // 마커가 표시될 위치입니다
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition, 
+    image: markerImage // 마커이미지 설정 
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);  
+    </script>
+</body>
+</html>
