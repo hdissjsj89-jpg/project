@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0,
+    maximum-scale=1.0, user-scalable=no"
+  >
+
+  <title>건강 기록 등록</title>
+
+  <style>
+    /* ========================================
+       기본 설정
+    ======================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      overflow: hidden;
+      background: #ffffff;
+      color: #111111;
+      font-family:
+        Pretendard,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Apple SD Gothic Neo",
+        "Noto Sans KR",
+        Arial,
+        sans-serif;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+    }
+
+    /* ========================================
+       전체 모바일 앱
+    ======================================== */
+    .app {
+      position: relative;
+      width: 100%;
+      height: 100svh;
+      overflow: hidden;
+      background: #ffffff;
+    }
+
+    /* ========================================
+       건강 기록 화면 상단바
+    ======================================== */
+    .main-header {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 80px;
+      padding: 20px 18px 8px;
+      background: #ffffff;
+    }
+
+    .menu-open-button {
+      position: absolute;
+      left: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+    }
+
+    .menu-open-button img {
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+    }
+
+    .main-title {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -0.7px;
+    }
+
+    .header-logo {
+      position: absolute;
+      right: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 62px;
+      height: 54px;
+    }
+
+    .header-logo img {
+      width: 60px;
+      height: 52px;
+      object-fit: contain;
+    }
+
+    /* ========================================
+       건강 기록 화면 스크롤 영역
+    ======================================== */
+    .main-content {
+      position: absolute;
+      top: 80px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 8px 20px 50px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      background: #ffffff;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .main-content::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* 반려견 프로필 */
+    .pet-profile {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .pet-photo {
+      flex-shrink: 0;
+      width: 104px;
+      height: 104px;
+      overflow: hidden;
+      border-radius: 50%;
+      background: #f1f5f3;
+    }
+
+    .pet-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .pet-name {
+      color: #4c4c4c;
+      font-size: 29px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .pet-info {
+      margin-top: 1px;
+      color: #888888;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    /* 오늘 컨디션 */
+    .condition-card {
+      position: relative;
+      width: 100%;
+      min-height: 122px;
+      margin-top: 12px;
+      padding: 20px;
+      border-radius: 16px;
+      background: #dff7ed;
+    }
+
+    .condition-title {
+      color: #7f8783;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .condition-text {
+      margin-top: 28px;
+      color: #30a677;
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .heart-wrap {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.56);
+    }
+
+    .heart-wrap img {
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+    }
+
+    /* 최근 기록 제목 */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .view-all {
+      color: #858585;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    /* 기록 목록 */
+    .record-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .record-item {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-height: 66px;
+      padding: 11px 16px;
+      border: 1px solid #dedede;
+      border-radius: 16px;
+      background: #ffffff;
+      box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.08);
+    }
+
+    .record-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      margin-right: 13px;
+      object-fit: contain;
+    }
+
+    .record-information {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .record-name {
+      overflow: hidden;
+      color: #505050;
+      font-size: 18px;
+      font-weight: 800;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .record-small-date {
+      margin-top: 2px;
+      color: #4f4f4f;
+      font-size: 14px;
+    }
+
+    .record-value {
+      flex-shrink: 0;
+      color: #858585;
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.35;
+      text-align: right;
+    }
+
+    /* 기록 추가 버튼 */
+    .add-button-area {
+      display: flex;
+      justify-content: center;
+      padding: 28px 0 24px;
+    }
+
+    .add-record-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 200px;
+      height: 51px;
+      padding: 0 19px;
+      border-radius: 16px;
+      background: #3da879;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .add-record-button img {
+      width: 26px;
+      height: 26px;
+      margin-left: 8px;
+      object-fit: contain;
+    }
+
+    /* ========================================
+       기록 입력 폼
+    ======================================== */
+    .record-form {
+      display: none;
+      margin-top: 4px;
+      padding: 18px;
+      border: 1px solid #dedede;
+      border-radius: 17px;
+      background: #ffffff;
+      box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.08);
+    }
+
+    .record-form.open {
+      display: block;
+    }
+
+    .form-title {
+      margin-bottom: 15px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .input-group {
+      margin-top: 13px;
+    }
+
+    .input-label {
+      display: block;
+      margin-bottom: 7px;
+      color: #555555;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      border: 1px solid #d7d7d7;
+      border-radius: 12px;
+      outline: none;
+      background: #ffffff;
+      color: #333333;
+      font-size: 16px;
+    }
+
+    .form-input,
+    .form-select {
+      height: 48px;
+      padding: 0 13px;
+    }
+
+    .form-textarea {
+      min-height: 105px;
+      padding: 13px;
+      resize: none;
+    }
+
+    .image-upload-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 104px;
+      border: 1px dashed #bcbcbc;
+      border-radius: 13px;
+      background: #fafafa;
+      cursor: pointer;
+    }
+
+    .image-upload-label img {
+      width: 31px;
+      height: 31px;
+      margin-right: 9px;
+      object-fit: contain;
+    }
+
+    .image-upload-label span {
+      color: #666666;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    #recordImage {
+      display: none;
+    }
+
+    .preview-image {
+      display: none;
+      width: 100%;
+      max-height: 220px;
+      margin-top: 12px;
+      border-radius: 13px;
+      object-fit: cover;
+    }
+
+    .form-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 17px;
+    }
+
+    .form-button {
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+      height: 48px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .cancel-button {
+      border: 1px solid #3da879;
+      color: #3da879;
+    }
+
+    .save-button {
+      background: #3da879;
+      color: #ffffff;
+    }
+
+    /* ========================================
+       슬라이드 메뉴 배경
+    ======================================== */
+    .menu-overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 80;
+      visibility: hidden;
+      width: 100%;
+      height: 100svh;
+      background: rgba(0, 0, 0, 0.38);
+      opacity: 0;
+      transition:
+        opacity 0.32s ease,
+        visibility 0.32s ease;
+    }
+
+    .menu-overlay.open {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* ========================================
+       왼쪽 슬라이드 MY 메뉴
+    ======================================== */
+    .side-menu {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      width: 82%;
+      height: 100svh;
+      overflow: hidden;
+      background: #ffffff;
+      box-shadow: 5px 0 16px rgba(0, 0, 0, 0.08);
+      transform: translateX(-100%);
+      transition: transform 0.34s ease;
+    }
+
+    .side-menu.open {
+      transform: translateX(0);
+    }
+
+    /* 메뉴 내부 스크롤 */
+    .side-menu-scroll {
+      flex: 1;
+      min-height: 0;
+      padding: 35px 20px 24px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .side-menu-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* 메뉴 상단 */
+    .side-header {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 43px;
+    }
+
+    .menu-close-button {
+      position: absolute;
+      left: -4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+    }
+
+    .menu-close-button img {
+      width: 23px;
+      height: 23px;
+      object-fit: contain;
+    }
+
+    .side-title {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    /* 메뉴 프로필 */
+    .side-profile {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 15px;
+    }
+
+    .side-pet-photo {
+      flex-shrink: 0;
+      width: 96px;
+      height: 96px;
+      overflow: hidden;
+      border-radius: 50%;
+      background: #f1f5f3;
+    }
+
+    .side-pet-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .side-pet-name {
+      color: #4b4b4b;
+      font-size: 28px;
+      font-weight: 800;
+    }
+
+    .side-pet-info {
+      margin-top: 1px;
+      color: #888888;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .notification-link {
+      position: absolute;
+      top: 19px;
+      right: -2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+    }
+
+    .notification-link img {
+      width: 27px;
+      height: 27px;
+      object-fit: contain;
+    }
+
+    /* 메뉴 섹션 제목 */
+    .side-section-title {
+      margin-top: 24px;
+      margin-bottom: 13px;
+      color: #4c4c4c;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    /* 오늘의 할 일 */
+    .side-task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .side-task {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-height: 64px;
+      padding: 12px 17px;
+      border: 1px solid #dedede;
+      border-radius: 16px;
+      background: #ffffff;
+      box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.08);
+    }
+
+    .side-task img {
+      flex-shrink: 0;
+      width: 25px;
+      height: 25px;
+      margin-right: 15px;
+      object-fit: contain;
+    }
+
+    .side-task-name {
+      flex: 1;
+      color: #4e4e4e;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .side-task-time {
+      color: #858585;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    /* 주요 기능 */
+    .side-quick-menu {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      width: 100%;
+    }
+
+    .side-quick-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      height: 75px;
+      border: 1px solid #dedede;
+      border-radius: 15px;
+      background: #ffffff;
+      box-shadow: 2px 3px 2px rgba(0, 0, 0, 0.08);
+    }
+
+    .side-quick-link img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 7px;
+      object-fit: contain;
+    }
+
+    .side-quick-link span {
+      font-size: 13px;
+      letter-spacing: -0.5px;
+      white-space: nowrap;
+    }
+
+    /* 이용약관 */
+    .service-information {
+      margin-top: 24px;
+      color: #474747;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.45;
+    }
+
+    /* ========================================
+       슬라이드 메뉴 하단 내비게이션
+    ======================================== */
+    .side-bottom-nav {
+      display: flex;
+      flex-shrink: 0;
+      width: 100%;
+      height: 116px;
+      border-top: 1px solid #dddddd;
+      background: #ffffff;
+    }
+
+    .side-nav-link {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-width: 0;
+      padding-top: 12px;
+      color: #111111;
+    }
+
+    .side-nav-link img {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 12px;
+      object-fit: contain;
+    }
+
+    .side-nav-link span {
+      font-size: 14px;
+    }
+
+    .side-nav-link.active {
+      color: #2fa774;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app">
+
+    <!-- ======================================
+         건강 기록 기본 화면
+    ======================================= -->
+    <header class="main-header">
+
+      <!-- 햄버거 버튼 -->
+      <button
+        type="button"
+        id="openMenuButton"
+        class="menu-open-button"
+        aria-label="MY 메뉴 열기"
+      >
+        <img
+          src="./images/ep_back.svg"
+          alt="메뉴"
+        >
+      </button>
+
+      <h1 class="main-title">건강 기록 등록</h1>
+
+      <!-- 오른쪽 로고 -->
+      <a
+        href="./home.html"
+        class="header-logo"
+        aria-label="홈으로 이동"
+      >
+        <img
+          src="./images/pat(xs).png"
+          alt="CarePet 로고"
+        >
+      </a>
+    </header>
+
+    <!-- 건강 기록 스크롤 콘텐츠 -->
+    <section
+      id="mainContent"
+      class="main-content"
+    >
+      <article class="pet-profile">
+        <div class="pet-photo">
+          <img
+            src="./images/pat.png"    
+             alt="반려견 초코"
+          >
+        </div>
+
+        <div>
+          <h2 class="pet-name">초코</h2>
+          <p class="pet-info">말티즈 - 3살</p>
+        </div>
+      </article>
+
+      <article class="condition-card">
+        <p class="condition-title">오늘 만나선</p>
+        <p class="condition-text">좋음</p>
+
+        <div class="heart-wrap">
+          <img
+            src="./images/hart.png"
+            alt="좋음"
+          >
+        </div>
+      </article>
+
+      <div class="section-header">
+        <h2 class="section-title">최근 기록</h2>
+
+        <a
+          href="./health-list.html"
+          class="view-all"
+        >
+          전체보기
+        </a>
+      </div>
+
+      <div
+        id="recordList"
+        class="record-list"
+      >
+        <a
+          href="./record-detail.html"
+          class="record-item"
+        >
+          <img
+            src="./images/pen.svg"
+            alt=""
+            class="record-icon"
+          >
+
+          <div class="record-information">
+            <h3 class="record-name">기침 증상</h3>
+          </div>
+
+          <p class="record-value">
+            2024.05.20
+          </p>
+        </a>
+
+        <a
+          href="./record-detail.html"
+          class="record-item"
+        >
+          <img
+            src="./images/star.svg"
+            alt=""
+            class="record-icon"
+          >
+
+          <div class="record-information">
+            <h3 class="record-name">
+              식품 알레르기
+            </h3>
+          </div>
+
+          <p class="record-value">
+            2024.05.18
+          </p>
+        </a>
+
+        <a
+          href="./record-detail.html"
+          class="record-item"
+        >
+          <img
+            src="./images/weight.svg"
+            alt=""
+            class="record-icon"
+          >
+
+          <div class="record-information">
+            <h3 class="record-name">
+              체중 기록
+            </h3>
+          </div>
+
+          <p class="record-value">
+            4.2Kg<br>
+            2024.05.17
+          </p>
+        </a>
+
+        <a
+          href="./record-detail.html"
+          class="record-item"
+        >
+          <img
+            src="./images/vechin_DHPP.svg"
+            alt=""
+            class="record-icon"
+          >
+
+          <div class="record-information">
+            <h3 class="record-name">
+              통합백신(DHPP)
+            </h3>
+
+            <p class="record-small-date">
+              2024.06.16
+            </p>
+          </div>
+
+          <p class="record-value">
+            2024.05.15
+          </p>
+        </a>
+      </div>
+
+      <!-- 새 기록 입력 폼 -->
+      <form
+        id="recordForm"
+        class="record-form"
+      >
+        <h2 class="form-title">
+          새로운 건강 기록
+        </h2>
+
+        <div class="input-group">
+          <label
+            for="recordType"
+            class="input-label"
+          >
+            기록 종류
+          </label>
+
+          <select
+            id="recordType"
+            class="form-select"
+          >
+            <option value="건강 기록">
+              건강 기록
+            </option>
+
+            <option value="증상 기록">
+              증상 기록
+            </option>
+
+            <option value="체중 기록">
+              체중 기록
+            </option>
+
+            <option value="예방접종">
+              예방접종
+            </option>
+
+            <option value="약 복용">
+              약 복용
+            </option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label
+            for="recordTitle"
+            class="input-label"
+          >
+            기록 제목
+          </label>
+
+          <input
+            type="text"
+            id="recordTitle"
+            class="form-input"
+            placeholder="예: 피부 발진"
+            required
+          >
+        </div>
+
+        <div class="input-group">
+          <label
+            for="recordDate"
+            class="input-label"
+          >
+            기록 날짜
+          </label>
+
+          <input
+            type="date"
+            id="recordDate"
+            class="form-input"
+            required
+          >
+        </div>
+
+        <div class="input-group">
+          <label
+            for="recordMemo"
+            class="input-label"
+          >
+            상세 내용
+          </label>
+
+          <textarea
+            id="recordMemo"
+            class="form-textarea"
+            placeholder="반려견의 상태를 입력해 주세요."
+          ></textarea>
+        </div>
+
+        <div class="input-group">
+          <span class="input-label">
+            이미지 등록
+          </span>
+
+          <label
+            for="recordImage"
+            class="image-upload-label"
+          >
+            <img
+              src="./images/icons/icon-camera.png"
+              alt=""
+            >
+
+            <span>사진을 선택해 주세요</span>
+          </label>
+
+          <input
+            type="file"
+            id="recordImage"
+            accept="image/*"
+          >
+
+          <img
+            id="previewImage"
+            class="preview-image"
+            alt="선택 이미지 미리보기"
+          >
+        </div>
+
+        <div class="form-buttons">
+          <button
+            type="button"
+            id="cancelButton"
+            class="form-button cancel-button"
+          >
+            취소
+          </button>
+
+          <button
+            type="submit"
+            class="form-button save-button"
+          >
+            기록 저장
+          </button>
+        </div>
+      </form>
+
+      <div class="add-button-area">
+        <button
+          type="button"
+          id="addRecordButton"
+          class="add-record-button"
+        >
+          + 기록 추가
+
+          <img
+            src="./images/plus_star_.svg"
+            alt=""
+          >
+        </button>
+      </div>
+    </section>
+
+    <!-- ======================================
+         메뉴 배경
+    ======================================= -->
+    <div
+      id="menuOverlay"
+      class="menu-overlay"
+    ></div>
+
+    <!-- ======================================
+         왼쪽 슬라이드 MY 메뉴
+    ======================================= -->
+    <aside
+      id="sideMenu"
+      class="side-menu"
+      aria-hidden="true"
+    >
+      <div class="side-menu-scroll">
+
+        <div class="side-header">
+          <button
+            type="button"
+            id="closeMenuButton"
+            class="menu-close-button"
+            aria-label="메뉴 닫기"
+          >
+            <img
+              src="./images/ep_back.svg"
+              alt="뒤로가기"
+            >
+          </button>
+
+          <h2 class="side-title">my</h2>
+        </div>
+
+        <article class="side-profile">
+          <div class="side-pet-photo">
+            <img
+              src="./images/pat.png"
+              alt="반려견 초코"
+            >
+          </div>
+
+          <div>
+            <h3 class="side-pet-name">초코</h3>
+            <p class="side-pet-info">
+              말티즈 - 3살
+            </p>
+          </div>
+
+          <a
+            href="./notification.html"
+            class="notification-link"
+            aria-label="알림 화면"
+          >
+            <img
+              src="./images/bell.svg"
+              alt="알림"
+            >
+          </a>
+        </article>
+
+        <h3 class="side-section-title">
+          오늘의 할 일
+        </h3>
+
+        <div class="side-task-list">
+          <a
+            href="./medicine.html"
+            class="side-task"
+          >
+            <img
+              src="./images//medication.svg"
+              alt=""
+            >
+
+            <span class="side-task-name">
+              약 복용
+            </span>
+
+            <span class="side-task-time">
+              10:00
+            </span>
+          </a>
+
+          <a
+            href="./walk.html"
+            class="side-task"
+          >
+            <img
+              src="./images/dog-walker.svg"
+              alt=""
+            >
+
+            <span class="side-task-name">
+              산책
+            </span>
+
+            <span class="side-task-time">
+              16:00
+            </span>
+          </a>
+
+          <a
+            href="./checkup.html"
+            class="side-task"
+          >
+            <img
+              src="./images/sqare.svg"
+              alt=""
+            >
+
+            <span class="side-task-name">
+              정기검진
+            </span>
+
+            <span class="side-task-time">
+              D - 15
+            </span>
+          </a>
+        </div>
+
+        <h3 class="side-section-title">
+          주요 기능
+        </h3>
+
+        <div class="side-quick-menu">
+          <a
+            href="./health-record.html"
+            class="side-quick-link"
+          >
+            <img
+              src="./images/file.svg"
+              alt=""
+            >
+            <span>건강기록</span>
+          </a>
+
+          <a
+            href="./hospital-map.html"
+            class="side-quick-link"
+          >
+            <img
+              src="./images/hospital.svg"
+              alt=""
+            >
+            <span>병원 찾기</span>
+          </a>
+
+          <a
+            href="./vaccination.html"
+            class="side-quick-link"
+          >
+            <img
+              src="./images/vaccine-syringe.svg"
+              alt=""
+            >
+            <span>예방접종</span>
+          </a>
+
+          <a
+            href="./reservation.html"
+            class="side-quick-link"
+          >
+            <img
+              src="./images/calendar.svg"
+              alt=""
+            >
+            <span>예약내역</span>
+          </a>
+        </div>
+
+        <div class="service-information">
+          <p>서비스 이용약관</p>
+          <p>고객센터 email: dslfkes.naver.com</p>
+          <p>대표전화번호: 123-5678</p>
+        </div>
+      </div>
+
+      <!-- 슬라이드 메뉴 하단 메뉴 -->
+      <nav class="side-bottom-nav">
+
+        <a
+          href="./home.html"
+          class="side-nav-link active"
+        >
+          <img
+            src="./images/green_home.svg"
+            alt=""
+          >
+          <span>홈</span>
+        </a>
+
+        <a
+          href="./serch.html"
+          class="side-nav-link"
+        >
+          <img
+            src="./images/black_search.svg"
+            alt=""
+          >
+          <span>탐색</span>
+        </a>
+
+        <a
+          href="./saved.html"
+          class="side-nav-link"
+        >
+          <img
+            src="./images/bookmark.svg"
+            alt=""
+          >
+          <span>저장</span>
+        </a>
+
+        <a
+          href="./my.html"
+          class="side-nav-link"
+        >
+          <img
+            src="./images/user.svg"
+            alt=""
+          >
+          <span>MY</span>
+        </a>
+      </nav>
+    </aside>
+  </main>
+
+  <script>
+    /* ========================================
+       슬라이드 메뉴 기능
+    ======================================== */
+    const openMenuButton =
+      document.getElementById("openMenuButton");
+
+    const closeMenuButton =
+      document.getElementById("closeMenuButton");
+
+    const sideMenu =
+      document.getElementById("sideMenu");
+
+    const menuOverlay =
+      document.getElementById("menuOverlay");
+
+    function openSideMenu() {
+      sideMenu.classList.add("open");
+      menuOverlay.classList.add("open");
+
+      sideMenu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+
+      document.body.classList.add(
+        "menu-open"
+      );
+    }
+
+    function closeSideMenu() {
+      sideMenu.classList.remove("open");
+      menuOverlay.classList.remove("open");
+
+      sideMenu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+
+      document.body.classList.remove(
+        "menu-open"
+      );
+    }
+
+    openMenuButton.addEventListener(
+      "click",
+      openSideMenu
+    );
+
+    closeMenuButton.addEventListener(
+      "click",
+      closeSideMenu
+    );
+
+    menuOverlay.addEventListener(
+      "click",
+      closeSideMenu
+    );
+
+    document.addEventListener(
+      "keydown",
+      function (event) {
+        if (event.key === "Escape") {
+          closeSideMenu();
+        }
+      }
+    );
+
+    /* 왼쪽으로 밀어서 메뉴 닫기 */
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    sideMenu.addEventListener(
+      "touchstart",
+      function (event) {
+        touchStartX =
+          event.changedTouches[0].clientX;
+      },
+      {
+        passive: true
+      }
+    );
+
+    sideMenu.addEventListener(
+      "touchend",
+      function (event) {
+        touchEndX =
+          event.changedTouches[0].clientX;
+
+        const moveDistance =
+          touchStartX - touchEndX;
+
+        if (moveDistance > 70) {
+          closeSideMenu();
+        }
+      },
+      {
+        passive: true
+      }
+    );
+
+    /* ========================================
+       건강 기록 추가 기능
+    ======================================== */
+    const mainContent =
+      document.getElementById("mainContent");
+
+    const recordList =
+      document.getElementById("recordList");
+
+    const recordForm =
+      document.getElementById("recordForm");
+
+    const addRecordButton =
+      document.getElementById("addRecordButton");
+
+    const cancelButton =
+      document.getElementById("cancelButton");
+
+    const recordType =
+      document.getElementById("recordType");
+
+    const recordTitle =
+      document.getElementById("recordTitle");
+
+    const recordDate =
+      document.getElementById("recordDate");
+
+    const recordMemo =
+      document.getElementById("recordMemo");
+
+    const recordImage =
+      document.getElementById("recordImage");
+
+    const previewImage =
+      document.getElementById("previewImage");
+
+    /* 오늘 날짜 입력 */
+    function setTodayDate() {
+      const today = new Date();
+
+      const year =
+        today.getFullYear();
+
+      const month =
+        String(
+          today.getMonth() + 1
+        ).padStart(2, "0");
+
+      const day =
+        String(
+          today.getDate()
+        ).padStart(2, "0");
+
+      recordDate.value =
+        year + "-" + month + "-" + day;
+    }
+
+    setTodayDate();
+
+    /* 기록 입력창 열기 */
+    addRecordButton.addEventListener(
+      "click",
+      function () {
+        recordForm.classList.add("open");
+        addRecordButton.style.display = "none";
+
+        window.setTimeout(
+          function () {
+            recordForm.scrollIntoView({
+              behavior: "smooth",
+              block: "start"
+            });
+          },
+          100
+        );
+      }
+    );
+
+    /* 기록 취소 */
+    cancelButton.addEventListener(
+      "click",
+      function () {
+        recordForm.classList.remove("open");
+        addRecordButton.style.display = "flex";
+
+        recordForm.reset();
+        setTodayDate();
+
+        previewImage.style.display = "none";
+        previewImage.removeAttribute("src");
+      }
+    );
+
+    /* 이미지 미리보기 */
+    recordImage.addEventListener(
+      "change",
+      function () {
+        const selectedFile =
+          recordImage.files[0];
+
+        if (!selectedFile) {
+          previewImage.style.display = "none";
+          previewImage.removeAttribute("src");
+          return;
+        }
+
+        const imageUrl =
+          URL.createObjectURL(selectedFile);
+
+        previewImage.src = imageUrl;
+        previewImage.style.display = "block";
+      }
+    );
+
+    /* 날짜 표시 형식 */
+    function formatDate(dateValue) {
+      return dateValue.replaceAll(
+        "-",
+        "."
+      );
+    }
+
+    /* HTML 특수문자 처리 */
+    function escapeHtml(text) {
+      const element =
+        document.createElement("div");
+
+      element.textContent = text;
+
+      return element.innerHTML;
+    }
+
+    /* 아이콘 선택 */
+    function getRecordIcon(type) {
+      if (type === "증상 기록") {
+        return "./images/icons/icon-symptom.png";
+      }
+
+      if (type === "체중 기록") {
+        return "./images/icons/icon-weight.png";
+      }
+
+      if (type === "예방접종") {
+        return "./images/icons/icon-vaccine-blue.png";
+      }
+
+      if (type === "약 복용") {
+        return "./images/icons/icon-medicine.png";
+      }
+
+      return "./images/icons/icon-health-record.png";
+    }
+
+    /* 새 기록 저장 */
+    recordForm.addEventListener(
+      "submit",
+      function (event) {
+        event.preventDefault();
+
+        const title =
+          recordTitle.value.trim();
+
+        const date =
+          recordDate.value;
+
+        const memo =
+          recordMemo.value.trim();
+
+        if (!title || !date) {
+          alert(
+            "기록 제목과 날짜를 입력해 주세요."
+          );
+          return;
+        }
+
+        const newRecord =
+          document.createElement("article");
+
+        newRecord.className =
+          "record-item";
+
+        const iconPath =
+          getRecordIcon(recordType.value);
+
+        newRecord.innerHTML = `
+          <img
+            src="${iconPath}"
+            alt=""
+            class="record-icon"
+          >
+
+          <div class="record-information">
+            <h3 class="record-name">
+              ${escapeHtml(title)}
+            </h3>
+
+            ${
+              memo
+                ? `
+                  <p class="record-small-date">
+                    ${escapeHtml(memo)}
+                  </p>
+                `
+                : ""
+            }
+          </div>
+
+          <p class="record-value">
+            ${formatDate(date)}
+          </p>
+        `;
+
+        recordList.prepend(newRecord);
+
+        recordForm.classList.remove("open");
+        addRecordButton.style.display = "flex";
+
+        recordForm.reset();
+        setTodayDate();
+
+        previewImage.style.display = "none";
+        previewImage.removeAttribute("src");
+
+        mainContent.scrollTo({
+          top: 280,
+          behavior: "smooth"
+        });
+
+        alert(
+          "건강 기록이 저장되었습니다."
+        );
+      }
+    );
+  </script>
+</body>
+</html>
