@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: "Malgun Gothic", sans-serif;
+  background: #ffffff;
+}
+
+.wrap {
+  width: 430px;
+}
+
+h1 {
+  margin: 8px 0 28px 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #000000;
+}
+
+select {
+  width: 50px;
+  height: 22px;
+  padding: 0 2px;
+  font-size: 14px;
+  color: #111111;
+  background: #ffffff;
+  border: 1px solid #888888;
+}
