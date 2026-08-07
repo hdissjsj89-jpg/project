@@ -1,0 +1,79 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 10px;
+  font-family: "Malgun Gothic", sans-serif;
+  background: #ffffff;
+}
+
+.form-wrap {
+  width: 530px;
+}
+
+/* 공통 fieldset */
+fieldset {
+  width: 100%;
+  margin: 0 0 8px 0;
+  padding: 18px 14px 12px;
+  border: 1px solid #777777;
+}
+
+/* 첫 번째 박스 */
+fieldset:first-child {
+  height: 111px;
+}
+
+/* 두 번째 박스 */
+fieldset:last-child {
+  height: 103px;
+}
+
+/* 제목 */
+legend {
+  padding: 0 3px;
+  font-size: 16px;
+  color: #111111;
+}
+
+/* 설명문 */
+.description {
+  margin: 5px 0 15px;
+  font-size: 16px;
+  color: #111111;
+}
+
+/* 라디오 / 체크박스 영역 */
+.option-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 각 항목 */
+.option-group label {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #111111;
+  cursor: pointer;
+}
+
+/* 기본 input */
+.option-group input {
+  margin: 0 2px 0 0;
+}
+
+/* 라디오 버튼 */
+input[type="radio"] {
+  width: 14px;
+  height: 14px;
+}
+
+/* 체크박스 */
+input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+}
