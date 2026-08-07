@@ -1,75 +1,156 @@
-li<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link
+  <meta charset="UTF-8">
+  <title>폼 구성 요소 알아보기</title>
+
+  <link rel="stylesheet" href="./css/main.css">
 </head>
+
 <body>
- <h1>[폼 구성 요소 알아보기]</h1> 
- <form action=""> 
-    <fieldset>
-        <legend>기본 폼 구성요소</legend>
-        <ol>
-            <li>
-                <label for="">ID</label>
-                <input type="text" placeholder="아이디전화">
-            </li>
-            <li>
-                <label for="" class="id">패스워드</label>
-                <input type="패스워드" placeholder="비밀번호">
-            </li>
-        </ol>
-    </fieldset>
-    <fieldset>
-        <fieldset>
-            <legend>예약</legend>
-            <label for="">예약날짜</label>
-            <input type="date">
-            <label for="">예약시간</label>
-            <input type="time">
-            <label for="">예약일정</label>
-            <input type="datetime-local">
-     </fieldset>
-    </fieldset>
-    <input type="submit" value="가입하기">
-    <input type="reset" value="다시작성하기"
-    <legend>파일전송</legend>
-    <ul>
-        <li>
-            <label for=""파일첨부
-        </li>
-    </ul>
-        <legend>개인정보</legend>
-        <ul>
-            <li>
-                <input type="radio" name="gender"><label for="">남</li>
-                <input type="radio" name="gender" checked><label for="">여</label>
-                 <li>
-                    <label for="">여행</label>
-                    <input type="checkbox" checked>
-                    <label for=""></label>영화</label>
-                    <input type="checkbox">
-                 </li>  
-                 <li>
-                    <label for="">컬러선택
-                    <select name="" id="" multiple>
-                    <option value="">:::색상선택:::</option>
-                    <option value="">빨간색</option>
-                    <option value="">파란</option>  
-                    </select>
-                    </label>
-                 </li> 
 
-         </ul><textarea name="" id=""cols="30" rows="50">
-            여기에 입력하세요
+  <div class="form-wrap">
 
-         </textarea>        
-        </ul>
-    </fieldset>
+    <h1>[폼 구성 요소 알아보기]</h1>
+
+    <form>
+
+      <fieldset>
+        <legend>기본 폼 구성 요소</legend>
+
+        <div class="form-row">
+          <span class="number">1.</span>
+
+          <label for="userId">ID</label>
+
+          <input
+            type="text"
+            id="userId"
+            class="text-input"
+          >
+        </div>
+
+
+        <div class="form-row">
+          <span class="number">2.</span>
+
+          <label for="password">PASSWORD</label>
+
+          <input
+            type="password"
+            id="password"
+            class="text-input"
+          >
+        </div>
+
+
+        <div class="form-row">
+          <span class="number">3.</span>
+
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="남"
+              checked
+            >
+            남
+          </label>
+
+          <label>
+            <input
+              type="radio"
+              name="gender"
+              value="여"
+            >
+            여
+          </label>
+        </div>
+
+
+        <div class="form-row">
+          <span class="number">4.</span>
+
+          <label>
+            여행
+            <input
+              type="checkbox"
+              name="hobby"
+              value="여행"
+            >
+          </label>
+
+          <label>
+            영화
+            <input
+              type="checkbox"
+              name="hobby"
+              value="영화"
+              checked
+            >
+          </label>
+
+          <label>
+            독서
+            <input
+              type="checkbox"
+              name="hobby"
+              value="독서"
+            >
+          </label>
+        </div>
+
+
+        <div class="form-row select-row">
+          <span class="number">5.</span>
+
+          <label for="colorSelect">칼라선택 :</label>
+
+          <select id="colorSelect">
+            <option selected>:::::: Color Select::::::</option>
+            <option>빨간색</option>
+            <option>녹색</option>
+            <option>파란색</option>
+          </select>
+        </div>
+
+
+        <div class="form-row textarea-row">
+          <span class="number">6.</span>
+
+          <label for="message">MESSAGE</label>
+
+          <textarea
+            id="message"
+            rows="4"
+            cols="30"
+          ></textarea>
+        </div>
+
+
+        <div class="form-row file-row">
+          <span class="number">7.</span>
+
+          <label for="file">파일 첨부 :</label>
+
+          <input
+            type="file"
+            id="file"
+          >
+        </div>
+
+      </fieldset>
+
+
+      <div class="button-area">
+        <button type="submit">전송하기</button>
+        <button type="reset">다시작성</button>
+        <button type="button">검색</button>
+      </div>
 
     </form>
-    <script src="./js/main.js"></script>
+
+  </div>
+
 </body>
 </html>
