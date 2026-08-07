@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>레트로 테트리스</title>
+
+  <link rel="stylesheet" href="./css/main.css">
+
+  <!-- HTML을 모두 읽은 뒤 JavaScript 실행 -->
+  <script src="./index.html" defer></script>
+</head>
+
+<body>
+
+  <main class="tetris-app">
+
+    <!-- 상단 타이틀 -->
+    <header class="game-title">
+      <span class="game-title__small">RETRO BLOCK GAME</span>
+      <h1>TETRIS</h1>
+    </header>
+
+    <section class="game-machine">
+
+      <!-- 왼쪽 이미지 영역 -->
+      <div class="intro-panel">
+
+        <div class="intro-image">
+          <div class="sky-decoration">
+            <span class="cloud cloud--1"></span>
+            <span class="cloud cloud--2"></span>
+            <span class="cloud cloud--3"></span>
+          </div>
+
+          <div class="castle">
+            <span class="castle__tower castle__tower--left"></span>
+            <span class="castle__tower castle__tower--center"></span>
+            <span class="castle__tower castle__tower--right"></span>
+            <span class="castle__building"></span>
+          </div>
+
+          <div class="intro-logo">
+            <strong>TETRIS</strong>
+            <span>PUSH START</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 가운데 게임 영역 -->
+      <section class="play-panel">
+
+        <div class="next-box">
+          <h2>NEXT</h2>
+
+          <canvas
+            id="nextCanvas"
+            width="120"
+            height="120"
+          ></canvas>
+        </div>
+
+        <div class="board-frame">
+
+          <div class="line-title">
+            LINES -
+            <span id="topLines">000</span>
+          </div>
+
+          <div class="canvas-wrap">
+
+            <canvas
+              id="gameCanvas"
+              width="300"
+              height="600"
+            ></canvas>
+
+            <!-- 게임 시작 화면 -->
+            <div id="gameOverlay" class="game-overlay">
+
+              <div class="overlay-content">
+                <h2 id="overlayTitle">TETRIS</h2>
+
+                <p id="overlayMessage">
+                  START 버튼을 눌러<br>
+                  게임을 시작하세요.
+                </p>
+
+                <button
+                  id="overlayStartButton"
+                  class="pixel-button pixel-button--blue"
+                  type="button"
+                >
+                  START
+                </button>
+              </div>
+
+            </div>
+
+            <!-- 일시정지 화면 -->
+            <div id="pauseOverlay" class="pause-overlay hidden">
+              <strong>PAUSE</strong>
+              <span>계속하려면 PAUSE 버튼을 누르세요.</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- 오른쪽 정보 영역 -->
+      <aside class="status-panel">
+
+        <div class="status-box">
+          <span>SCORE</span>
+          <strong id="score">000000</strong>
+        </div>
+
+        <div class="status-box">
+          <span>LEVEL</span>
+          <strong id="level">01</strong>
+        </div>
+
+        <div class="status-box">
+          <span>LINES</span>
+          <strong id="lines">000</strong>
+        </div>
+
+        <div class="status-box">
+          <span>BEST</span>
+          <strong id="bestScore">000000</strong>
+        </div>
+
+        <div class="control-box">
+          <h2>CONTROLS</h2>
+
+          <ul>
+            <li>
+              <kbd>←</kbd>
+              <kbd>→</kbd>
+              MOVE
+            </li>
+
+            <li>
+              <kbd>↓</kbd>
+              SOFT DROP
+            </li>
+
+            <li>
+              <kbd>↑</kbd>
+              ROTATE
+            </li>
+
+            <li>
+              <kbd>SPACE</kbd>
+              HARD DROP
+            </li>
+
+            <li>
+              <kbd>P</kbd>
+              PAUSE
+            </li>
+          </ul>
+        </div>
+
+        <div class="button-panel">
+
+          <button
+            id="startButton"
+            class="pixel-button pixel-button--blue"
+            type="button"
+          >
+            START
+          </button>
+
+          <button
+            id="pauseButton"
+            class="pixel-button pixel-button--red"
+            type="button"
+            disabled
+          >
+            PAUSE
+          </button>
+
+          <button
+            id="resetButton"
+            class="pixel-button pixel-button--blue"
+            type="button"
+          >
+            RESET
+          </button>
+
+        </div>
+
+      </aside>
+
+    </section>
+
+    <!-- 모바일용 조작 버튼 -->
+    <section class="mobile-controls">
+
+      <button
+        type="button"
+        class="mobile-button"
+        data-action="left"
+        aria-label="왼쪽 이동"
+      >
+        ←
+      </button>
+
+      <button
+        type="button"
+        class="mobile-button"
+        data-action="rotate"
+        aria-label="회전"
+      >
+        ↻
+      </button>
+
+      <button
+        type="button"
+        class="mobile-button"
+        data-action="right"
+        aria-label="오른쪽 이동"
+      >
+        →
+      </button>
+
+      <button
+        type="button"
+        class="mobile-button"
+        data-action="down"
+        aria-label="아래로 이동"
+      >
+        ↓
+      </button>
+
+      <button
+        type="button"
+        class="mobile-button mobile-button--wide"
+        data-action="drop"
+      >
+        HARD DROP
+      </button>
+
+    </section>
+
+  </main>
+<script src="./js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,687 @@
+/* ====================================
+   기본 설정
+==================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --black: #050505;
+  --dark: #101019;
+  --panel: #17171c;
+  --gray: #464653;
+  --light-gray: #aaaab7;
+  --white: #ffffff;
+  --blue: #1852a4;
+  --red: #b3211a;
+  --orange: #ff5a21;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100svh;
+  padding: 24px;
+  overflow-x: hidden;
+  color: var(--white);
+  font-family:
+    "Courier New",
+    Courier,
+    monospace;
+  background:
+    radial-gradient(circle at top, #292942 0%, #101016 50%, #030305 100%);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ====================================
+   전체 영역
+==================================== */
+
+.tetris-app {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.game-title {
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.game-title__small {
+  display: block;
+  margin-bottom: 4px;
+  color: #a7a7b5;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 5px;
+}
+
+.game-title h1 {
+  color: var(--orange);
+  font-size: 52px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 8px;
+  text-shadow:
+    3px 3px 0 #611609,
+    6px 6px 0 #000000;
+}
+
+
+/* ====================================
+   게임기 외곽 프레임
+==================================== */
+
+.game-machine {
+  display: grid;
+  grid-template-columns: 1fr 470px 220px;
+  gap: 14px;
+  padding: 18px;
+  border: 8px solid #393947;
+  outline: 5px solid #09090d;
+  background:
+    linear-gradient(135deg, #3f4051 25%, transparent 25%) -12px 0 / 24px 24px,
+    linear-gradient(225deg, #282938 25%, transparent 25%) -12px 0 / 24px 24px,
+    linear-gradient(315deg, #3a3b4c 25%, transparent 25%) 0 0 / 24px 24px,
+    linear-gradient(45deg, #20212d 25%, #111119 25%) 0 0 / 24px 24px;
+  box-shadow:
+    0 0 0 5px #676778,
+    0 16px 35px rgba(0, 0, 0, 0.8);
+}
+
+
+/* ====================================
+   왼쪽 시안 이미지 영역
+==================================== */
+
+.intro-panel {
+  min-width: 0;
+  padding: 12px;
+  border: 5px solid #09090b;
+  background: #272735;
+}
+
+.intro-image {
+  position: relative;
+  min-height: 620px;
+  overflow: hidden;
+  border: 4px solid #626274;
+  background:
+    linear-gradient(
+      to bottom,
+      #13a8ee 0%,
+      #32b9f4 53%,
+      #0c52d5 54%,
+      #06155e 64%,
+      #351106 65%,
+      #130704 100%
+    );
+}
+
+/*
+  images/tetris-bg.png 파일이 있다면
+  아래 주석을 해제해서 첨부 이미지를 배경으로 사용할 수 있습니다.
+*/
+
+/*
+.intro-image {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.05), rgba(0,0,0,0.05)),
+    url("./images/tetris-bg.png");
+  background-size: cover;
+  background-position: center;
+}
+*/
+
+
+/* 구름 */
+
+.cloud {
+  position: absolute;
+  display: block;
+  width: 90px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow:
+    25px -15px 0 rgba(255, 255, 255, 0.95),
+    55px 0 0 rgba(255, 255, 255, 0.95),
+    90px -10px 0 rgba(255, 255, 255, 0.95);
+}
+
+.cloud--1 {
+  top: 110px;
+  left: 5%;
+}
+
+.cloud--2 {
+  top: 160px;
+  right: 22%;
+  transform: scale(0.7);
+}
+
+.cloud--3 {
+  top: 65px;
+  right: 5%;
+  transform: scale(0.5);
+}
+
+
+/* 성 모양 */
+
+.castle {
+  position: absolute;
+  bottom: 122px;
+  left: 50%;
+  width: 240px;
+  height: 360px;
+  transform: translateX(-50%);
+}
+
+.castle__building {
+  position: absolute;
+  bottom: 0;
+  left: 25px;
+  width: 190px;
+  height: 125px;
+  border: 5px solid #661006;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #b62313 0,
+      #b62313 14px,
+      #7a1008 15px,
+      #7a1008 19px
+    );
+  box-shadow:
+    0 0 0 5px #df431f inset,
+    0 8px 0 #250603;
+}
+
+.castle__tower {
+  position: absolute;
+  bottom: 85px;
+  display: block;
+  width: 58px;
+  border: 5px solid #641006;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      #d12c16 0,
+      #d12c16 14px,
+      #7b1009 15px,
+      #7b1009 19px
+    );
+}
+
+.castle__tower::before {
+  position: absolute;
+  top: -76px;
+  left: -10px;
+  width: 70px;
+  height: 78px;
+  content: "";
+  border: 5px solid #4e0b08;
+  border-radius: 50% 50% 15% 15%;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      #e43117 0,
+      #e43117 8px,
+      #801009 8px,
+      #801009 16px
+    );
+}
+
+.castle__tower--left {
+  left: 22px;
+  height: 155px;
+}
+
+.castle__tower--center {
+  bottom: 95px;
+  left: 89px;
+  width: 65px;
+  height: 235px;
+}
+
+.castle__tower--center::before {
+  top: -95px;
+  left: -9px;
+  width: 72px;
+  height: 97px;
+  border-radius: 50% 50% 10% 10%;
+}
+
+.castle__tower--right {
+  right: 22px;
+  height: 175px;
+}
+
+.intro-logo {
+  position: absolute;
+  right: 0;
+  bottom: 15px;
+  left: 0;
+  text-align: center;
+}
+
+.intro-logo strong {
+  display: block;
+  color: #ff5a22;
+  font-size: clamp(38px, 5vw, 67px);
+  font-weight: 900;
+  letter-spacing: 5px;
+  text-shadow:
+    3px 3px 0 #65140b,
+    5px 5px 0 #000000;
+}
+
+.intro-logo span {
+  display: block;
+  margin-top: 14px;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 5px;
+  animation: blink 1s steps(2, start) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+
+/* ====================================
+   가운데 게임 영역
+==================================== */
+
+.play-panel {
+  display: grid;
+  grid-template-columns: 125px 1fr;
+  gap: 12px;
+  min-width: 0;
+}
+
+.next-box {
+  align-self: start;
+  margin-top: 105px;
+  padding: 10px;
+  border: 5px solid #08080a;
+  outline: 3px solid #5e5e69;
+  background: #111116;
+}
+
+.next-box h2 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+#nextCanvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #050505;
+}
+
+.board-frame {
+  padding: 7px;
+  border: 5px solid #08080a;
+  outline: 3px solid #62626d;
+  background: #24242a;
+}
+
+.line-title {
+  height: 45px;
+  padding: 8px;
+  border: 3px solid #73737c;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 2px;
+  background: #050505;
+}
+
+.canvas-wrap {
+  position: relative;
+  margin-top: 6px;
+}
+
+#gameCanvas {
+  display: block;
+  width: 300px;
+  height: 600px;
+  max-width: 100%;
+  border: 3px solid #666671;
+  background: #050505;
+}
+
+
+/* ====================================
+   게임 시작 오버레이
+==================================== */
+
+.game-overlay,
+.pause-overlay {
+  position: absolute;
+  z-index: 10;
+  inset: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.87);
+}
+
+.game-overlay.hidden,
+.pause-overlay.hidden,
+.hidden {
+  display: none;
+}
+
+.overlay-content h2 {
+  margin-bottom: 18px;
+  color: #ff5723;
+  font-size: 36px;
+  letter-spacing: 4px;
+  text-shadow: 3px 3px 0 #64140a;
+}
+
+.overlay-content p {
+  margin-bottom: 25px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.8;
+  letter-spacing: 1px;
+}
+
+.pause-overlay {
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pause-overlay strong {
+  color: #ffcc33;
+  font-size: 36px;
+  letter-spacing: 4px;
+}
+
+.pause-overlay span {
+  font-size: 13px;
+}
+
+
+/* ====================================
+   오른쪽 정보 영역
+==================================== */
+
+.status-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.status-box {
+  padding: 12px;
+  border: 4px solid #08080a;
+  outline: 2px solid #64646e;
+  text-align: center;
+  background: #111115;
+}
+
+.status-box span {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.status-box strong {
+  display: block;
+  font-size: 25px;
+  letter-spacing: 3px;
+}
+
+.control-box {
+  padding: 14px;
+  border: 4px solid #08080a;
+  outline: 2px solid #64646e;
+  background: #1b1b20;
+}
+
+.control-box h2 {
+  margin-bottom: 15px;
+  font-size: 17px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+.control-box ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+}
+
+.control-box li {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+kbd {
+  min-width: 28px;
+  padding: 3px 5px;
+  border: 2px solid #9999a2;
+  color: #ffffff;
+  font-family: inherit;
+  text-align: center;
+  background: #29292e;
+  box-shadow: 2px 2px 0 #000000;
+}
+
+.button-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+/* ====================================
+   픽셀 버튼
+==================================== */
+
+.pixel-button {
+  min-height: 44px;
+  padding: 9px 15px;
+  border: 4px solid #08080a;
+  outline: 2px solid #8c8c96;
+  color: #ffffff;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 0 #000000;
+  box-shadow:
+    inset 0 3px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -4px 0 rgba(0, 0, 0, 0.35);
+}
+
+.pixel-button--blue {
+  background: #2356a1;
+}
+
+.pixel-button--red {
+  background: #b1241d;
+}
+
+.pixel-button:hover {
+  filter: brightness(1.2);
+}
+
+.pixel-button:active {
+  transform: translateY(2px);
+}
+
+.pixel-button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(1);
+  opacity: 0.45;
+}
+
+
+/* ====================================
+   모바일 조작 버튼
+==================================== */
+
+.mobile-controls {
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-width: 500px;
+  margin: 25px auto 0;
+}
+
+.mobile-button {
+  min-height: 55px;
+  border: 4px solid #050505;
+  outline: 2px solid #71717c;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 900;
+  background: #24244e;
+  box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.35);
+}
+
+.mobile-button:active {
+  transform: translateY(3px);
+}
+
+.mobile-button--wide {
+  grid-column: 1 / -1;
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+
+
+/* ====================================
+   화면 크기가 작을 때
+==================================== */
+
+@media screen and (max-width: 1050px) {
+  .game-machine {
+    grid-template-columns: 1fr 470px;
+  }
+
+  .intro-panel {
+    display: none;
+  }
+
+  .status-panel {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .control-box,
+  .button-panel {
+    grid-column: span 2;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  body {
+    padding: 15px 10px 30px;
+  }
+
+  .game-title h1 {
+    font-size: 40px;
+  }
+
+  .game-machine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px;
+  }
+
+  .play-panel {
+    width: 100%;
+    max-width: 450px;
+    grid-template-columns: 90px 1fr;
+  }
+
+  .next-box {
+    margin-top: 85px;
+    padding: 6px;
+  }
+
+  .next-box h2 {
+    font-size: 14px;
+  }
+
+  #gameCanvas {
+    width: 100%;
+    height: auto;
+  }
+
+  .status-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    max-width: 450px;
+  }
+
+  .control-box,
+  .button-panel {
+    grid-column: 1 / -1;
+  }
+
+  .mobile-controls {
+    display: grid;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .play-panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .next-box {
+    width: 120px;
+    margin: 0 auto;
+  }
+
+  .board-frame {
+    width: 100%;
+  }
+
+  .status-panel {
+    grid-template-columns: 1fr 1fr;
+  }
+}
