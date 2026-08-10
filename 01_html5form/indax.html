@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <h1>입력요소의 종류와속성</h1>
+    
+    <form action="">
+        <fieldset>
+            <legend>로그인폼</legend>
+            <ul>
+                <li>
+                    <label for="id">아이디:</label>
+                    <input type="text" placeholder="아이디를 입력해주새요" autofocus required id=""re>
+
+                </li>
+                <li>
+                    <label for="pw">비밀번호:</label>
+                    <input type="password" placeholder="비밀번호를 입력해주세요" required pw>
+                </li>
+            </ul>
+        </fieldset>
+        <input type="submit" value="로그인">
+        <input type="reset" value="취소">
+        <fieldset>
+            <legend>나의 개인정보</legend>
+            <ul>
+                <li>
+                    <label for="">e-mail</label>
+                    <input type="text" placeholder="exem@naver.com" >
+                </li>
+                <label for="contury">국적:</label>
+                <label for="local">내국인</label> <input type="radio" name="gender">
+                <label for="fore">외국인</label> <input type="radio" name="gender">
+                <li>
+                    <label for="">search:</label>
+                    <input type="text" placeholder="wep design" name="gender">
+                </li>
+                <label for="">url:</label>
+                <input type="text" placeholder="http://">
+            </ul>
+        </fieldset>
+ <input type="submit"value="가입하기">
+ <input type="text" value="새로작성">
+ <fieldset>
+    <legend>나의일정</legend>
+    <ul>
+        <li>
+            <label for="nb">숫자 입력:</label>
+            <input type="number value="1" min="1" max="10" nb>
+        </li>
+        <li>
+            <label for="tel">전화번호:</label>
+            <input class="tel" "text" value="010" disabled>
+            <input class="tel" "text" maxlength="4">
+            <input class="tel" "text" maxlength="4">
+        </li>
+        <li>
+            <label for="">코딩실력(상,중,하):</label>
+            <input type="range" min="1" max="3" value="1">
+        </li>
+    </ul>
+ </fieldset>
+ <input type="submit"value="가입하기">
+ <input type="reset"value="다시작성">
+ <fieldset>
+    <legend>예약관리</legend>
+    <input type="date">
+    <ul>
+        <li>
+        <label for="">예약시간</label>
+        <input type="datetime-local">
+        </li>
+    </ul>
+</fieldset>
+<input type="submit" value="예약하기">
+<input type="reset" value="취소하기">
+<fieldset>
+    <legend>그래프</legend>
+    <ul>
+        <li>
+            <label for="">좋아하는 색상</label>
+            <input type="color">
+        </li>
+        <li>
+            <label for="prog">진행률70%</label>
+            <progress max="100" value="90%"></progress>
+        </li>
+        <li>
+            <label for="">사용량(50%)</label>
+            <meter value="50" max="100"></meter>
+        </li>
+        <li>
+       <label for="cons">상담분야</label>
+         <select name=""id="cons"></select>
+        <select name="" id="cons"></select>
+        <option value="코성형">코성형</option>
+        <option value="이마성형">이마성형</option>
+        <option value="지방/윤곽성형">지방/윤곽성형</option>
+        <option value="눈성형">눈성형</option>
+        <option value="기타">기타</option>
+        <option value="리프팅/동안">리프팅/동안</option>
+    </select>
+</li>
+    </ul>
+</fieldset>
+
+    </form>
+ <script src="./js/script.js"></script>   
+</body>
+</html>

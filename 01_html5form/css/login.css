@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, "Noto Sans KR", sans-serif;
+    color: #333;
+    background: #fff;
+}
+
+/* 전체 로그인 영역 */
+.login-wrap {
+    width: 750px;
+    height: 560px;
+
+    margin: 4px;
+
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    padding-top: 42px;
+}
+
+/* 로그인 제목 */
+.login-wrap h1 {
+    text-align: center;
+
+    font-size: 44px;
+    font-weight: 700;
+
+    color: #444;
+
+    margin-bottom: 32px;
+}
+
+/* 로그인 폼 */
+.login-form {
+    width: 420px;
+    margin: 0 auto;
+}
+
+/* 입력 영역 */
+.input-group {
+    margin-bottom: 21px;
+}
+
+/* 아이디 / 비밀번호 */
+.input-group label {
+    display: block;
+
+    font-size: 19px;
+    font-weight: 400;
+
+    margin-bottom: 10px;
+}
+
+/* 입력창 */
+.input-group input {
+    display: block;
+
+    width: 100%;
+    height: 68px;
+
+    border: 1px solid #ccc;
+
+    padding: 0 15px;
+
+    font-size: 18px;
+
+    outline: none;
+}
+
+/* 입력창 클릭 */
+.input-group input:focus {
+    border-color: #777;
+}
+
+/* 로그인 버튼 */
+.login-btn {
+    display: block;
+
+    width: 100%;
+    height: 64px;
+
+    margin-top: 28px;
+
+    border: 0;
+
+    background: #2d2d2d;
+    color: #fff;
+
+    font-size: 20px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+/* 버튼 클릭 효과 */
+.login-btn:hover {
+    background: #1f1f1f;
+}
