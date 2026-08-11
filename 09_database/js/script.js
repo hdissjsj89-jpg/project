@@ -2,7 +2,7 @@
 
 const scriptURL =
 
-"https://script.google.com/macros/s/AKfycbyp5kzgnvw9SLqXrREaM_VU6re9YRnoDpoNRMnewNMaOk1xi2AbLvxrb7MoYO5gwnld/exec"; // 자신의 app스크립트 주소 링크 넣는 위치
+"https://script.google.com/macros/s/AKfycbwYrhSNcHpl_ybxHcoM-C17wNz7N6HhO1s2CXllmpWET_ToSe7X8KUESap8DiLw0TU/exec"; // 자신의 app스크립트 주소 링크 넣는 위치
 
 const form = document.forms["submit-to-google-sheet"];
 
