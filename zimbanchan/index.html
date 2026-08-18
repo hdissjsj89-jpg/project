@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>반찬연구소</title>
+
+  <!-- CSS 연결 -->
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+
+  <!-- =========================
+       Header
+  ========================== -->
+  <header class="header">
+    <div class="header-inner">
+
+      <!-- 상단 영역 -->
+      <div class="header-top">
+
+        <!-- 검색창 -->
+        <div class="search-area">
+          <form class="search-form" id="searchForm">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="반찬을 검색해주세요"
+              aria-label="반찬 검색"
+            />
+
+            <button type="submit" class="search-btn" aria-label="검색">
+              <img
+                src="./images/logo/search-f5f5f5-18 1.png"
+                alt="검색"
+              />
+            </button>
+          </form>
+        </div>
+
+        <!-- 가운데 로고 -->
+        <h1 class="logo">
+          <a href="./index.html">
+            <img
+              src="./icons/imgi_11_logo_pc.svg"
+              alt=""
+              class="logo-icon"
+            />
+          
+          </a>
+        </h1>
+
+        <!-- 회원 메뉴 -->
+        <nav class="member-menu" aria-label="회원 메뉴">
+          <a href="#">로그인</a>
+          <a href="#">회원가입</a>
+          <a href="#">내정보</a>
+        </nav>
+
+      </div>
+      <!-- // 상단 영역 -->
+
+
+      <!-- 하단 메뉴 영역 -->
+      <div class="header-bottom">
+
+        <!-- 왼쪽 여백 영역 -->
+        <div class="bottom-space"></div>
+
+        <!-- 메인 메뉴 -->
+        <nav class="main-menu" aria-label="주요 메뉴">
+
+          <a href="#" class="menu-item">
+            <img
+              src="./images/icon-phone.png"
+              alt=""
+            />
+            <span>전화주문</span>
+          </a>
+
+          <a href="#" class="menu-item">
+            <span>브랜드</span>
+          </a>
+
+          <a href="#" class="menu-item">
+            <img
+              src="./images/icon-grid.png"
+              alt=""
+            />
+            <span>반찬보기</span>
+          </a>
+
+          <a href="#" class="menu-item">
+            <img
+              src="./images/icon-cart.png"
+              alt=""
+            />
+            <span>장바구니</span>
+          </a>
+
+        </nav>
+
+      </div>
+      <!-- // 하단 메뉴 영역 -->
+
+    </div>
+  </header>
+  <!-- // Header -->
+<!-- =========================
+ <!-- =========================
+     HERO SECTION
+========================== -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <img
+      src="./images/logo/hero.png"
+      class="hero-image"
+      alt=""
+    >
+
+  </div>
+</section>
+<!-- // HERO SECTION -->
+<!-- =========================
+<!-- =========================
+     INTRO SECTION
+========================== -->
+<section class="intro">
+  <div class="intro-inner">
+
+    <!-- 타이틀 -->
+    <div class="intro-title-box">
+      <h2 class="intro-title">부담없는 알뜰 반찬</h2>
+      <p class="intro-sub-title">
+        이번 주 가장 추천하는 제품만 골라드려요.
+      </p>
+    </div>
+
+
+    <!-- =========================
+         상품 리스트
+    ========================== -->
+    <div class="intro-list">
+
+
+      <!-- 상품 01 -->
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="./images/logo/1.png"
+            alt=""
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div class="product-info">
+
+          <span class="badge new">신제품</span>
+
+          <h3 class="product-name">
+            쭈꾸미 풋마늘 파스타
+          </h3>
+
+          <p class="product-desc">
+            봄기운 가득! 쭈꾸미와 풋마늘의 찰떡 궁합
+          </p>
+
+          <div class="product-price">
+            <strong class="discount">7%</strong>
+            <strong class="price">12,800원</strong>
+          </div>
+
+          <del class="original-price">
+            13,800원
+          </del>
+
+        </div>
+      </article>
+
+
+      <!-- 상품 02 -->
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="./images/logo/2.png"
+            alt=""
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div class="product-info">
+
+          <span class="badge new">신제품</span>
+
+          <h3 class="product-name">
+            쭈꾸미 미나리 파스타
+          </h3>
+
+          <p class="product-desc">
+            지금이 제철! 쭈꾸미와 미나리의 만남
+          </p>
+
+          <div class="product-price">
+            <strong class="discount">7%</strong>
+            <strong class="price">12,800원</strong>
+          </div>
+
+          <del class="original-price">
+            13,800원
+          </del>
+
+        </div>
+      </article>
+
+
+      <!-- 상품 03 -->
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="./images/logo/3.png"
+            alt=""
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div class="product-info">
+
+          <span class="badge best">인기</span>
+
+          <h3 class="product-name">
+            잡채
+          </h3>
+
+          <p class="product-desc">
+            탱글한 면발과 맛깔진 고명이 가득
+          </p>
+
+          <div class="product-price">
+            <strong class="price">12,800원</strong>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 상품 04 -->
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="./images/logo/4.png"
+            alt=""
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div class="product-info">
+
+          <h3 class="product-name">
+            한끼 한돈제육 완조리
+          </h3>
+
+          <p class="product-desc">
+            혼자 먹기 딱 좋은, 1인분 제육볶음
+          </p>
+
+          <div class="product-price">
+            <strong class="price">6,800원</strong>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 상품 05 -->
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="./images/logo/5.png"
+            alt=""
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div class="product-info">
+
+          <span class="badge new">신제품</span>
+
+          <h3 class="product-name">
+            쭈꾸미 풋마늘 파스타
+          </h3>
+
+          <p class="product-desc">
+            봄기운 가득! 쭈꾸미와 풋마늘의 찰떡 궁합
+          </p>
+
+          <div class="product-price">
+            <strong class="discount">7%</strong>
+            <strong class="price">12,800원</strong>
+          </div>
+
+          <del class="original-price">
+            13,800원
+          </del>
+
+        </div>
+      </article>
+
+
+      <!-- 상품 06 -->
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="./images/logo/6.png"
+            alt=""
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div class="product-info">
+
+          <span class="badge new">신제품</span>
+
+          <h3 class="product-name">
+            쭈꾸미 미나리 파스타
+          </h3>
+
+          <p class="product-desc">
+            지금이 제철! 쭈꾸미와 미나리의 만남
+          </p>
+
+          <div class="product-price">
+            <strong class="discount">7%</strong>
+            <strong class="price">12,800원</strong>
+          </div>
+
+          <del class="original-price">
+            13,800원
+          </del>
+
+        </div>
+      </article>
+
+
+      <!-- 상품 07 -->
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="./images/logo/7.png"
+            alt=""
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div class="product-info">
+
+          <h3 class="product-name">
+            잡채
+          </h3>
+
+          <p class="product-desc">
+            탱글한 면발과 맛깔진 고명이 가득
+          </p>
+
+          <div class="product-price">
+            <strong class="price">12,800원</strong>
+          </div>
+
+        </div>
+      </article>
+
+
+      <!-- 상품 08 -->
+      <article class="product-card">
+
+        <div class="product-image">
+          <img
+            src="./images/logo/8.png"
+            alt=""
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div class="product-info">
+
+          <h3 class="product-name">
+            한끼 한돈제육 완조리
+          </h3>
+
+          <p class="product-desc">
+            혼자 먹기 딱 좋은, 1인분 제육볶음
+          </p>
+
+          <div class="product-price">
+            <strong class="price">6,800원</strong>
+          </div>
+
+        </div>
+      </article>
+
+
+    </div>
+  </div>
+</section>
+<!-- // INTRO SECTION -->
+ <!-- =========================
+     INTRO 2 SECTION
+========================== -->
+<section class="intro2">
+  <div class="intro2-inner">
+
+    <!-- 타이틀 -->
+    <div class="intro2-title-box">
+      <h2 class="intro2-title">집밥 한 끼</h2>
+      <p class="intro2-sub-title">최소한 불기엔 현명한 소비</p>
+    </div>
+
+    <!-- 상품 리스트 -->
+    <div class="intro2-list">
+
+      <!-- 상품 01 -->
+      <article class="meal-card">
+
+        <div class="meal-image">
+          <span class="sale-badge">11%</span>
+
+          <img
+            src="./images/logo/9.png"
+            alt=""
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div class="meal-info">
+          <h3 class="meal-name">매추리알 간장조림</h3>
+          <div class="meal-price">
+            <strong class="discount">11%</strong>
+            <strong class="price">3,400원</strong>
+          </div>
+          <del class="origin-price">3,800원</del>
+        </div>
+
+      </article>
+
+
+      <!-- 상품 02 -->
+      <article class="meal-card">
+
+        <div class="meal-image">
+          <span class="sale-badge">11%</span>
+
+          <img
+            src="./images/logo/10.png"
+            alt=""
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div class="meal-info">
+
+          <div class="label-group">
+            <span class="label new">신제품</span>
+          </div>
+
+          <h3 class="meal-name">한우애채무침</h3>
+
+          <p class="meal-desc">
+            달콤하고 부드러운 아삭한 봄철 반찬
+          </p>
+
+          <div class="meal-price">
+            <strong class="discount">11%</strong>
+            <strong class="price">3,800원</strong>
+          </div>
+
+          <del class="origin-price">4,300원</del>
+
+        </div>
+
+      </article>
+
+
+      <!-- 상품 03 -->
+      <article class="meal-card">
+
+        <div class="meal-image">
+          <span class="sale-badge">11%</span>
+
+          <img
+            src="./images/logo/11.png"
+            alt=""
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div class="meal-info">
+
+          <div class="label-group">
+            <span class="label new">신제품</span>
+            <span class="label best">베스트</span>
+          </div>
+
+          <h3 class="meal-name">[집밥한상] 한우 소고기 마파두부</h3>
+
+          <p class="meal-desc">
+            얼큰 가득 든든한 한우 한입의 마파두부
+          </p>
+
+          <div class="meal-price">
+            <strong class="discount">11%</strong>
+            <strong class="price">4,700원</strong>
+          </div>
+
+          <del class="origin-price">5,300원</del>
+
+        </div>
+
+      </article>
+
+
+      <!-- 상품 04 -->
+      <article class="meal-card">
+
+        <div class="meal-image">
+          <span class="sale-badge">11%</span>
+
+          <img
+            src="./images/logo/12.png"
+            alt=""
+            onerror="this.style.display='none'"
+          >
+        </div>
+
+        <div class="meal-info">
+
+          <h3 class="meal-name">한끼 한돈 김치두루치기_완조리</h3>
+
+          <p class="meal-desc">
+            푸짐한 밥반찬으로 든든한 한끼 두루치기
+          </p>
+
+          <div class="meal-price">
+            <strong class="discount">12%</strong>
+            <strong class="price">6,400원</strong>
+          </div>
+
+          <del class="origin-price">7,300원</del>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+</section>
+<!-- ==================================================
+     BEST SECTION START
+================================================== -->
+<section class="best-v2-section">
+
+  <div class="best-v2-inner">
+
+    <!-- ==================================================
+         BEST TITLE AREA
+    ================================================== -->
+    <div class="best-v2-heading">
+
+      <h2 class="best-v2-title">
+        고객이 추천하는 찐 추천 반찬
+      </h2>
+
+      <!-- 추천 탭 -->
+      <div class="best-v2-tabs">
+
+        <button type="button" class="best-v2-tab active">
+          고수님 추천
+        </button>
+
+        <button type="button" class="best-v2-tab">
+          김*혜님 추천
+        </button>
+
+        <button type="button" class="best-v2-tab">
+          강*영님 추천
+        </button>
+
+        <button type="button" class="best-v2-tab">
+          원*미님 추천
+        </button>
+
+      </div>
+
+    </div>
+    <!-- // BEST TITLE AREA -->
+
+
+    <!-- ==================================================
+         BEST CONTENT AREA
+    ================================================== -->
+    <div class="best-v2-content">
+
+
+      <!-- ==================================================
+           LEFT MAIN IMAGE
+      ================================================== -->
+      <div class="best-v2-main-image">
+
+        <img
+          src="./images/02_day_banchan/best1.jpg"
+          alt="여러 가지 반찬으로 구성된 추천 한상차림"
+          onerror="this.style.display='none'"
+        >
+
+      </div>
+      <!-- // LEFT MAIN IMAGE -->
+
+
+      <!-- ==================================================
+           RIGHT AREA
+      ================================================== -->
+      <div class="best-v2-right">
+
+
+        <!-- ==================================================
+             CUSTOMER REVIEW
+        ================================================== -->
+        <div class="best-v2-review">
+
+          <div class="best-v2-review-text">
+
+            <h3 class="best-v2-review-title">
+              고수님의 장바구니
+            </h3>
+
+            <p class="best-v2-review-desc">
+              매일 아침 차리는게 정말 일이었는데<br>
+              금방 금방 준비해서<br>
+              건강하게 먹을 수 있었어요!
+            </p>
+
+          </div>
+
+
+          <div class="best-v2-review-image">
+
+            <img
+              src="./images/이미지파일명02.png"
+              alt="아이와 함께 있는 고객 일러스트"
+              onerror="this.style.display='none'"
+            >
+
+          </div>
+
+        </div>
+        <!-- // CUSTOMER REVIEW -->
+
+
+        <!-- ==================================================
+             PRODUCT LIST
+        ================================================== -->
+        <div class="best-v2-product-list">
+
+
+          <!-- 카드 01 -->
+          <article class="best-v2-card">
+
+            <div class="best-v2-card-image">
+              <img
+                src="./images/logo/b1.png"
+                alt="육수용 버무리 반찬"
+                onerror="this.style.display='none'"
+              >
+            </div>
+
+            <div class="best-v2-card-info">
+
+              <span class="best-v2-label">일자상품</span>
+
+              <h3 class="best-v2-card-title">
+                육수용 버무리
+              </h3>
+
+              <p class="best-v2-card-desc">
+                믿고 먹을 수 있는 우리...
+              </p>
+
+              <strong class="best-v2-price">
+                4,700원
+              </strong>
+
+            </div>
+
+          </article>
+
+
+          <!-- 카드 02 -->
+          <article class="best-v2-card">
+
+            <div class="best-v2-card-image">
+              <img
+                src="./images/logo/b2.png"
+                alt="새콤 오이무침 반찬"
+                onerror="this.style.display='none'"
+              >
+            </div>
+
+            <div class="best-v2-card-info">
+
+              <span class="best-v2-label">일자상품</span>
+
+              <h3 class="best-v2-card-title">
+                새콤 오이무침
+              </h3>
+
+              <p class="best-v2-card-desc">
+                아이들이 먹기 좋은 새...
+              </p>
+
+              <strong class="best-v2-price">
+                4,700원
+              </strong>
+
+            </div>
+
+          </article>
+
+
+          <!-- 카드 03 -->
+          <article class="best-v2-card">
+
+            <div class="best-v2-card-image">
+              <img
+                src="./images/logo/b3.png"
+                alt="숙주나물무침 반찬"
+                onerror="this.style.display='none'"
+              >
+            </div>
+
+            <div class="best-v2-card-info">
+
+              <span class="best-v2-label">일자상품</span>
+
+              <h3 class="best-v2-card-title">
+                숙주나물무침
+              </h3>
+
+              <p class="best-v2-card-desc">
+                깔끔하게 볶은 담백한...
+              </p>
+
+              <strong class="best-v2-price">
+                4,700원
+              </strong>
+
+            </div>
+
+          </article>
+
+
+          <!-- 카드 04 -->
+          <article class="best-v2-card">
+
+            <div class="best-v2-card-image">
+              <img
+                src="./images/logo/b4.png"
+                alt="시금치나물 반찬"
+                onerror="this.style.display='none'"
+              >
+            </div>
+
+            <div class="best-v2-card-info">
+
+              <span class="best-v2-label">일자상품</span>
+
+              <h3 class="best-v2-card-title">
+                시금치나물
+              </h3>
+
+              <p class="best-v2-card-desc">
+                향긋하게 무쳐 깊은 맛...
+              </p>
+
+              <strong class="best-v2-price">
+                4,700원
+              </strong>
+
+            </div>
+
+          </article>
+
+
+          <!-- 카드 05 -->
+          <article class="best-v2-card">
+
+            <div class="best-v2-card-image">
+              <img
+                src="./images/logo/b5.png"
+                alt="감자채볶음 반찬"
+                onerror="this.style.display='none'"
+              >
+            </div>
+
+            <div class="best-v2-card-info">
+
+              <span class="best-v2-label">일자상품</span>
+
+              <h3 class="best-v2-card-title">
+                감자채볶음
+              </h3>
+
+              <p class="best-v2-card-desc">
+                고소하면서 담백한 감...
+              </p>
+
+              <strong class="best-v2-price">
+                4,700원
+              </strong>
+
+            </div>
+
+          </article>
+
+
+        </div>
+        <!-- // PRODUCT LIST -->
+
+
+        <!-- ==================================================
+             CART BUTTON
+        ================================================== -->
+        <div class="best-v2-button-wrap">
+
+          <a href="#" class="best-v2-cart-button">
+            장바구니에 한번에 담기
+          </a>
+
+        </div>
+        <!-- // CART BUTTON -->
+
+
+      </div>
+      <!-- // RIGHT AREA -->
+
+
+    </div>
+    <!-- // BEST CONTENT AREA -->
+
+
+  </div>
+
+</section>
+<!-- ==================================================
+     BEST SECTION END
+================================================== -->
+
+
+
+
+
+
+  
+  
+  
+    <!-- JavaScript 연결 -->
+  <script src="./script.js"></script>
+
+</body>
+</html>
