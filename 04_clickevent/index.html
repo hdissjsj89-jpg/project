@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>jQuery 애니메이션 관련 메서드</title>
+
+  <!-- CSS 연결 -->
+  <link rel="stylesheet" href="./css/style.css">
+
+  <!-- jQuery 연결 -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+  <!-- jQuery 작성 파일 연결 -->
+  <script src="./js/main.js" defer></script>
+</head>
+
+<body>
+
+  <div class="wrap">
+
+    <!-- 제목 -->
+    <h1>[ jQuery 애니메이션 관련 메서드 ]</h1>
+
+    <!-- jQuery 메서드 목록 -->
+    <ol class="method-list">
+      <li>$('.대상').fadeIn();</li>
+      <li>$('.대상').fadeOut();</li>
+      <li>$('.대상').fadeToggle();</li>
+      <li>$('.대상').slideUp();</li>
+      <li>$('.대상').slideDown();</li>
+      <li>$('.대상').slideToggle();</li>
+      <li>$('.대상').animate();</li>
+    </ol>
+
+
+    <!-- 버튼 영역 -->
+    <div class="button-area">
+
+      <button type="button" id="fadeInBtn">
+        fadeIn
+      </button>
+
+      <button type="button" id="fadeOutBtn">
+        fadeOut
+      </button>
+
+      <button type="button" id="fadeToggleBtn">
+        fadeToggle
+      </button>
+
+      <button type="button" id="slideUpBtn">
+        slideUp
+      </button>
+
+      <button type="button" id="slideDownBtn">
+        slideDown
+      </button>
+
+      <button type="button" id="slideToggleBtn">
+        slideToggle
+      </button>
+
+      <button type="button" id="ani1Btn">
+        ani1
+      </button>
+
+      <button type="button" id="ani2Btn">
+        ani2
+      </button>
+
+    </div>
+
+
+    <hr>
+
+
+    <!-- ========================
+         첫 번째 박스 그룹
+    ========================= -->
+    <div class="box-parent top-box">
+
+      <!-- fadeIn / fadeOut -->
+      <div class="box red-box">
+        fadeIn / fadeOut
+      </div>
+
+      <!-- fadeToggle -->
+      <div class="box green-box">
+        fadeToggle
+      </div>
+
+    </div>
+
+
+    <!-- ========================
+         두 번째 박스 그룹
+    ========================= -->
+    <div class="box-parent bottom-box">
+
+      <!-- slideUp / slideDown -->
+      <div class="box yellow-box">
+        slideUp / slideDown
+      </div>
+
+      <!-- slideToggle -->
+      <div class="box lime-box">
+        slideToggle
+      </div>
+
+      <!-- animate -->
+      <div class="box animation-box">
+        Animation
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>
