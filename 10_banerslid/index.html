@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>설화수 추천 슬라이드</title>
+
+  <!-- Swiper CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+
+  <!-- 사용자 CSS -->
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+
+  <!-- ==================================================
+       추천 상품 슬라이드 섹션
+       전체 너비 : 100%
+       inner : 1440px
+       섹션 높이 : 950px
+  =================================================== -->
+  <section class="recommend-section">
+
+    <div class="recommend-inner">
+
+      <!-- 섹션 제목 -->
+      <h2 class="recommend-title">설화수 추천</h2>
+
+
+      <!-- ==================================================
+           Swiper 슬라이드 시작
+      =================================================== -->
+      <div class="recommend-swiper swiper">
+
+        <div class="swiper-wrapper">
+
+          <!-- =========================
+               슬라이드 카드 01
+          ========================== -->
+          <div class="swiper-slide product-card">
+
+            <!--
+              상품 이미지는 background-image로 삽입
+              사용자가 직접 이미지 교체 가능
+            -->
+            <div
+              class="product-image"
+              style="background-image:url('./images/1.jpg');"
+            ></div>
+
+            <div class="product-info">
+              <h3>윤조아이세럼</h3>
+              <p class="eng-name">First Care Activating Eye Serum</p>
+              <strong>115,000원</strong>
+            </div>
+
+          </div>
+
+
+          <!-- =========================
+               슬라이드 카드 02
+          ========================== -->
+          <div class="swiper-slide product-card">
+
+            <div
+              class="product-image"
+              style="background-image:url('./images/2.jpg');"
+            ></div>
+
+            <div class="product-info">
+              <h3>여윤팩</h3>
+              <p class="eng-name">Overnight Recharging Mask</p>
+              <strong>70,000원</strong>
+            </div>
+
+          </div>
+
+
+          <!-- =========================
+               슬라이드 카드 03
+          ========================== -->
+          <div class="swiper-slide product-card">
+
+            <div
+              class="product-image"
+              style="background-image:url('./images/3.jpg');"
+            ></div>
+
+            <div class="product-info">
+              <h3>순행클렌징폼</h3>
+              <p class="eng-name">Gentle Cleansing Foam</p>
+              <strong>67,000원</strong>
+            </div>
+
+          </div>
+
+
+          <!-- =========================
+               슬라이드 카드 04
+          ========================== -->
+          <div class="swiper-slide product-card">
+
+            <div
+              class="product-image"
+              style="background-image:url('./images/4.jpg');"
+            ></div>
+
+            <div class="product-info">
+              <h3>자음생크림</h3>
+              <p class="eng-name">Concentrated Ginseng Renewing Cream</p>
+              <strong>270,000원</strong>
+            </div>
+
+          </div>
+
+
+          <!-- =========================
+               슬라이드 카드 05
+          ========================== -->
+          <div class="swiper-slide product-card">
+
+            <div
+              class="product-image"
+              style="background-image:url('./images/5.jpg');"
+            ></div>
+
+            <div class="product-info">
+              <h3>윤조에센스</h3>
+              <p class="eng-name">First Care Activating Serum</p>
+              <strong>140,000원</strong>
+            </div>
+
+          </div>
+
+
+          <!-- =========================
+               슬라이드 카드 06
+          ========================== -->
+          <div class="swiper-slide product-card">
+
+            <div
+              class="product-image"
+              style="background-image:url('./images/6.jpg');"
+            ></div>
+
+            <div class="product-info">
+              <h3>탄력크림</h3>
+              <p class="eng-name">Essential Comfort Firming Cream</p>
+              <strong>120,000원</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ==============================
+             이전 버튼
+             이미지는 사용자가 직접 교체
+        =============================== -->
+        <button
+          type="button"
+          class="swiper-button-prev custom-arrow"
+          aria-label="이전 상품"
+        >
+          <img
+            src="./images/2-arr-l.png"
+            alt="이전"
+          />
+        </button>
+
+
+        <!-- ==============================
+             다음 버튼
+             이미지는 사용자가 직접 교체
+        =============================== -->
+        <button
+          type="button"
+          class="swiper-button-next custom-arrow"
+          aria-label="다음 상품"
+        >
+          <img
+            src="./images/3-arr-r.png"
+            alt="다음"
+          />
+        </button>
+
+      </div>
+      <!-- Swiper 슬라이드 끝 -->
+
+
+      <!-- ==================================================
+           하단 컨트롤 영역
+           진행 막대 + 일시정지/재생 버튼
+      =================================================== -->
+      <div class="slide-control">
+
+        <!-- 진행 막대 -->
+        <div class="progress-wrap">
+          <span class="progress-bar"></span>
+        </div>
+
+
+        <!-- 일시정지 / 재생 버튼 -->
+        <button
+          type="button"
+          class="play-control"
+          aria-label="슬라이드 일시정지"
+        >
+
+          <!-- 일시정지 이미지 -->
+          <img
+            src="./images/다운로드 (1).svg"
+            alt="일시정지"
+            class="pause-icon"
+          />
+
+          <!-- 재생 이미지 -->
+          <img
+            src="./images/다운로드.svg"
+            alt="재생"
+            class="play-icon"
+          />
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- 사용자 JavaScript -->
+  <script src="./js/script.js"></script>
+
+</body>
+</html>
