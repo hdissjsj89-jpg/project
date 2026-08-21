@@ -1,0 +1,235 @@
+/* ==================================================
+   기본 초기화
+================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+
+/* ==================================================
+   메인 슬라이드 섹션
+   전체 폭 100%
+   높이 470px
+================================================== */
+
+.main-slide-section {
+  position: relative;
+
+  width: 100%;
+  height: 470px;
+
+  overflow: hidden;
+
+  background: #111;
+}
+
+
+/* ==================================================
+   Swiper
+================================================== */
+
+.mainSwiper {
+  width: 100%;
+  height: 470px;
+}
+
+
+/* 슬라이드 공통 */
+.mainSwiper .swiper-slide {
+  width: 100%;
+  height: 470px;
+
+  /* 배경이미지로 배너 구현 */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+
+/* ==================================================
+   슬라이드 배경이미지 경로
+
+   아래 이미지 파일명은
+   컴퓨터에 있는 이미지로 교체하면 됩니다.
+================================================== */
+
+.slide01 {
+  background-image: url("../images/banner-1.png");
+}
+
+.slide02 {
+  background-image: url("../images/banner_2.jpg");
+}
+
+.slide03 {
+  background-image: url("../images/banner_3.png");
+}
+
+.slide04 {
+  background-image: url("../images/banner_4.jpg");
+}
+
+.slide05 {
+  background-image: url("../images/banner_5.jpg");
+}
+
+.slide06 {
+  background-image: url("../images/banner_6.png");
+}
+
+
+/* ==================================================
+   하단 컨트롤 전체 영역
+
+   시안처럼 이미지 콘텐츠 안쪽에 배치
+================================================== */
+
+.slide-control-inner {
+  position: absolute;
+
+  left: 50%;
+  bottom: 25px;
+
+  transform: translateX(-50%);
+
+  z-index: 20;
+
+  width: 780px;
+  max-width: calc(100% - 80px);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  pointer-events: none;
+}
+
+
+/* 실제 버튼은 클릭 가능하게 설정 */
+.arrow-box,
+.slide-page {
+  pointer-events: auto;
+}
+
+
+/* ==================================================
+   좌우 버튼
+================================================== */
+
+.arrow-box {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+/* 이전 / 다음 공통 */
+.slide-prev,
+.slide-next {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+
+  transition: transform 0.2s ease;
+}
+
+
+/* hover 효과 */
+.slide-prev:hover,
+.slide-next:hover {
+  transform: scale(1.05);
+}
+
+
+/* ==================================================
+   좌우 버튼 이미지
+
+   이미지 파일은 사용자가 교체
+================================================== */
+
+.slide-prev img,
+.slide-next img {
+  display: block;
+
+  width: 16px;
+  height: 16px;
+
+  object-fit: contain;
+}
+
+
+/* ==================================================
+   우측 하단 페이지 표시
+   시안의 5 | 6 형태
+================================================== */
+
+.slide-page {
+  min-width: 61px;
+  height: 30px;
+
+  padding: 0 11px;
+
+  border-radius: 16px;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+/* 현재 번호 */
+.slide-page .current {
+  color: #fff;
+}
+
+
+/* 전체 번호 */
+.slide-page .total {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* 가운데 구분선 */
+.page-line {
+  display: block;
+
+  width: 1px;
+  height: 11px;
+
+  background: rgba(255, 255, 255, 0.65);
+}

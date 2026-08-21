@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>메인 배너 슬라이드</title>
+
+  <!-- Swiper CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  >
+
+  <!-- 사용자 CSS -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+  <!-- ==================================================
+       메인 배너 슬라이드
+       전체 가로 100% / 세로 470px
+  =================================================== -->
+  <section class="main-slide-section">
+
+    <!-- Swiper 시작 -->
+    <div class="swiper mainSwiper">
+
+      <div class="swiper-wrapper">
+
+        <!-- 슬라이드 1 -->
+        <div class="swiper-slide slide01"></div>
+
+        <!-- 슬라이드 2 -->
+        <div class="swiper-slide slide02"></div>
+
+        <!-- 슬라이드 3 -->
+        <div class="swiper-slide slide03"></div>
+
+        <!-- 슬라이드 4 -->
+        <div class="swiper-slide slide04"></div>
+
+        <!-- 슬라이드 5 -->
+        <div class="swiper-slide slide05"></div>
+
+        <!-- 슬라이드 6 -->
+        <div class="swiper-slide slide06"></div>
+
+      </div>
+
+    </div>
+    <!-- Swiper 끝 -->
+
+
+    <!-- ==================================================
+         하단 컨트롤 영역
+    =================================================== -->
+    <div class="slide-control-inner">
+
+      <!-- 좌우 버튼 영역 -->
+      <div class="arrow-box">
+
+        <!-- 이전 버튼 -->
+        <button
+          type="button"
+          class="slide-prev"
+          aria-label="이전 슬라이드"
+        >
+          <!-- 사용자가 교체할 이미지 -->
+          <img
+            src="./images/icon-arrow-left-a3a3a3-24.svg"
+            alt="이전"
+          >
+        </button>
+
+
+        <!-- 다음 버튼 -->
+        <button
+          type="button"
+          class="slide-next"
+          aria-label="다음 슬라이드"
+        >
+          <!-- 사용자가 교체할 이미지 -->
+          <img
+            src="./images/icon-arrow-right-a3a3a3-24.svg"
+            alt="다음"
+          >
+        </button>
+
+      </div>
+
+
+      <!-- ==================================================
+           페이지 표시
+           1 | 6
+      =================================================== -->
+      <div class="slide-page">
+
+        <!-- 현재 슬라이드 번호 -->
+        <span class="current">1</span>
+
+        <!-- 구분선 -->
+        <span class="page-line"></span>
+
+        <!-- 전체 슬라이드 개수 -->
+        <span class="total">6</span>
+
+      </div>
+
+    </div>
+
+  </section>
+  <!-- 메인 배너 슬라이드 끝 -->
+
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- 사용자 JS -->
+  <script src="./js/script.js"></script>
+
+</body>
+</html>
