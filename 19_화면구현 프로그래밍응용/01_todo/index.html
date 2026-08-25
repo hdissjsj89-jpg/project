@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- 반응형 설정 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>하루체크 | Haru Check</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- JavaScript -->
+    <script src="./js/app.js" defer></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =====================================================
+         01. SPLASH
+    ====================================================== -->
+    <section class="screen splash-screen active" id="splashScreen">
+
+        <div class="splash-content">
+
+            <div class="splash-logo">
+                ✓
+            </div>
+
+            <h1>하루체크</h1>
+
+            <p>
+                오늘 해야 할 일을<br>
+                하나씩 완료해 보세요.
+            </p>
+
+            <div class="splash-character">
+                🌱
+            </div>
+
+            <button
+                type="button"
+                class="start-btn"
+                data-screen="homeScreen"
+            >
+                시작하기
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         02. HOME
+    ====================================================== -->
+    <section class="screen" id="homeScreen">
+
+        <div class="app-container">
+
+            <!-- 홈 상단 -->
+            <header class="home-header">
+
+                <div>
+
+                    <p class="hello">
+                        안녕하세요 👋
+                    </p>
+
+                    <h2>
+                        오늘도 하나씩<br>
+                        해볼까요?
+                    </h2>
+
+                    <p
+                        class="today-date"
+                        id="todayDate"
+                    ></p>
+
+                </div>
+
+                <div class="header-character">
+                    🌷
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 오늘 목표
+            ================================================== -->
+            <section class="goal-card">
+
+                <div class="goal-top">
+
+                    <div>
+
+                        <span class="small-label">
+                            오늘의 목표 🌱
+                        </span>
+
+                        <h3 id="goalMessage">
+                            오늘 할 일을 시작해 볼까요?
+                        </h3>
+
+                    </div>
+
+                    <strong
+                        class="goal-percent"
+                        id="goalPercent"
+                    >
+                        0%
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-track">
+
+                    <div
+                        class="progress-bar"
+                        id="progressBar"
+                    ></div>
+
+                </div>
+
+
+                <div class="goal-bottom">
+
+                    <strong id="goalCount">
+                        0 / 0 완료
+                    </strong>
+
+                    <span id="goalSubMessage">
+                        새로운 할 일을 추가해 보세요 ✨
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 STEP 4 : 검색
+            ================================================== -->
+            <section class="search-section">
+
+                <div class="search-box">
+
+                    <span class="search-icon">
+                        🔍
+                    </span>
+
+                    <input
+                        type="search"
+                        id="todoSearch"
+                        placeholder="할 일을 검색해 보세요"
+                        autocomplete="off"
+                    >
+
+                    <button
+                        type="button"
+                        class="search-clear"
+                        id="searchClearBtn"
+                        aria-label="검색어 삭제"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 STEP 4 : 카테고리 필터
+            ================================================== -->
+            <section class="filter-section">
+
+                <div
+                    class="filter-chips"
+                    id="homeFilter"
+                >
+
+                    <button
+                        type="button"
+                        class="filter-chip active"
+                        data-filter="전체"
+                    >
+                        전체
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-chip"
+                        data-filter="공부"
+                    >
+                        📘 공부
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-chip"
+                        data-filter="업무"
+                    >
+                        💻 업무
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-chip"
+                        data-filter="쇼핑"
+                    >
+                        🛍️ 쇼핑
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-chip"
+                        data-filter="개인"
+                    >
+                        🌷 개인
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 정렬
+            ================================================== -->
+            <div class="todo-toolbar">
+
+                <span class="small-label">
+                    TODAY
+                </span>
+
+                <select
+                    id="todoSort"
+                    class="sort-select"
+                    aria-label="할 일 정렬"
+                >
+                    <option value="default">
+                        기본순
+                    </option>
+
+                    <option value="time">
+                        시간순
+                    </option>
+
+                    <option value="priority">
+                        중요도순
+                    </option>
+
+                    <option value="latest">
+                        최근 등록순
+                    </option>
+                </select>
+
+            </div>
+
+
+            <!-- =================================================
+                 오늘 할 일
+            ================================================== -->
+            <section class="todo-section">
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <h2>
+                            오늘 할 일
+                        </h2>
+
+                    </div>
+
+                    <span
+                        class="count-badge"
+                        id="todoCount"
+                    >
+                        0
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="todo-list"
+                    id="todoList"
+                ></div>
+
+
+                <!-- 아무 할 일 없음 -->
+                <div
+                    class="empty-state"
+                    id="homeEmpty"
+                >
+
+                    <div class="empty-icon">
+                        🌿
+                    </div>
+
+                    <h3>
+                        아직 등록된 할 일이 없어요.
+                    </h3>
+
+                    <p>
+                        + 버튼을 눌러<br>
+                        오늘의 할 일을 추가해 보세요.
+                    </p>
+
+                </div>
+
+
+                <!-- 검색 결과 없음 -->
+                <div
+                    class="empty-state hidden"
+                    id="searchEmpty"
+                >
+
+                    <div class="empty-icon">
+                        🔎
+                    </div>
+
+                    <h3>
+                        찾는 할 일이 없어요.
+                    </h3>
+
+                    <p>
+                        다른 검색어나<br>
+                        카테고리를 선택해 보세요.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="fab"
+            id="homeAddBtn"
+            aria-label="할 일 추가"
+        >
+            +
+        </button>
+
+    </section>
+
+
+    <!-- =====================================================
+         03. TODO ADD
+    ====================================================== -->
+    <section class="screen" id="addScreen">
+
+        <div class="app-container">
+
+            <header class="sub-header">
+
+                <button
+                    type="button"
+                    class="back-btn"
+                    data-screen="homeScreen"
+                >
+                    ←
+                </button>
+
+                <h2>
+                    새로운 할 일
+                </h2>
+
+                <span></span>
+
+            </header>
+
+
+            <form
+                class="form-card"
+                id="addTodoForm"
+            >
+
+                <div class="form-group">
+
+                    <label for="addTitle">
+                        할 일
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="addTitle"
+                        placeholder="무엇을 해야 하나요?"
+                        maxlength="60"
+                    >
+
+                    <p
+                        class="error-message"
+                        id="addTitleError"
+                    >
+                        할 일 제목을 입력해 주세요.
+                    </p>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="addDate">
+                            날짜
+                        </label>
+
+                        <input
+                            type="date"
+                            id="addDate"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="addTime">
+                            시간
+                        </label>
+
+                        <input
+                            type="time"
+                            id="addTime"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        카테고리
+                    </label>
+
+                    <div
+                        class="category-selector"
+                        id="addCategorySelector"
+                    >
+
+                        <button
+                            type="button"
+                            class="category-chip study selected"
+                            data-value="공부"
+                        >
+                            📘 공부
+                        </button>
+
+                        <button
+                            type="button"
+                            class="category-chip work"
+                            data-value="업무"
+                        >
+                            💻 업무
+                        </button>
+
+                        <button
+                            type="button"
+                            class="category-chip shopping"
+                            data-value="쇼핑"
+                        >
+                            🛍️ 쇼핑
+                        </button>
+
+                        <button
+                            type="button"
+                            class="category-chip personal"
+                            data-value="개인"
+                        >
+                            🌷 개인
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        중요도
+                    </label>
+
+                    <div
+                        class="priority-selector"
+                        id="addPrioritySelector"
+                    >
+
+                        <button
+                            type="button"
+                            data-value="낮음"
+                        >
+                            낮음
+                        </button>
+
+                        <button
+                            type="button"
+                            class="selected"
+                            data-value="보통"
+                        >
+                            보통
+                        </button>
+
+                        <button
+                            type="button"
+                            data-value="중요"
+                        >
+                            중요
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="addMemo">
+                        메모
+                    </label>
+
+                    <textarea
+                        id="addMemo"
+                        placeholder="필요한 내용을 적어주세요."
+                        maxlength="300"
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    할 일 추가하기
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         04. TODO EDIT
+    ====================================================== -->
+    <section class="screen" id="editScreen">
+
+        <div class="app-container">
+
+            <header class="sub-header">
+
+                <button
+                    type="button"
+                    class="back-btn"
+                    id="editBackBtn"
+                >
+                    ←
+                </button>
+
+                <h2>
+                    할 일 수정
+                </h2>
+
+                <span></span>
+
+            </header>
+
+
+            <form
+                class="form-card"
+                id="editTodoForm"
+            >
+
+                <input
+                    type="hidden"
+                    id="editId"
+                >
+
+
+                <div class="form-group">
+
+                    <label for="editTitle">
+                        할 일
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editTitle"
+                        maxlength="60"
+                    >
+
+                    <p
+                        class="error-message"
+                        id="editTitleError"
+                    >
+                        할 일 제목을 입력해 주세요.
+                    </p>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="editDate">
+                            날짜
+                        </label>
+
+                        <input
+                            type="date"
+                            id="editDate"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="editTime">
+                            시간
+                        </label>
+
+                        <input
+                            type="time"
+                            id="editTime"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        카테고리
+                    </label>
+
+                    <div
+                        class="category-selector"
+                        id="editCategorySelector"
+                    >
+
+                        <button
+                            type="button"
+                            class="category-chip study"
+                            data-value="공부"
+                        >
+                            📘 공부
+                        </button>
+
+                        <button
+                            type="button"
+                            class="category-chip work"
+                            data-value="업무"
+                        >
+                            💻 업무
+                        </button>
+
+                        <button
+                            type="button"
+                            class="category-chip shopping"
+                            data-value="쇼핑"
+                        >
+                            🛍️ 쇼핑
+                        </button>
+
+                        <button
+                            type="button"
+                            class="category-chip personal"
+                            data-value="개인"
+                        >
+                            🌷 개인
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        중요도
+                    </label>
+
+                    <div
+                        class="priority-selector"
+                        id="editPrioritySelector"
+                    >
+
+                        <button
+                            type="button"
+                            data-value="낮음"
+                        >
+                            낮음
+                        </button>
+
+                        <button
+                            type="button"
+                            data-value="보통"
+                        >
+                            보통
+                        </button>
+
+                        <button
+                            type="button"
+                            data-value="중요"
+                        >
+                            중요
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="editMemo">
+                        메모
+                    </label>
+
+                    <textarea
+                        id="editMemo"
+                        maxlength="300"
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    수정 완료
+                </button>
+
+
+                <button
+                    type="button"
+                    class="delete-btn"
+                    id="deleteTodoBtn"
+                >
+                    삭제하기
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         05. CALENDAR
+    ====================================================== -->
+    <section class="screen" id="calendarScreen">
+
+        <div class="app-container">
+
+            <header class="page-header">
+
+                <span class="small-label">
+                    CALENDAR
+                </span>
+
+                <h2>
+                    나의 일정 🗓️
+                </h2>
+
+                <p>
+                    날짜를 선택하면 등록된 할 일을 확인할 수 있어요.
+                </p>
+
+            </header>
+
+
+            <div class="calendar-card">
+
+                <div class="calendar-head">
+
+                    <button
+                        type="button"
+                        id="prevMonthBtn"
+                    >
+                        ‹
+                    </button>
+
+
+                    <strong id="calendarTitle"></strong>
+
+
+                    <button
+                        type="button"
+                        id="nextMonthBtn"
+                    >
+                        ›
+                    </button>
+
+                </div>
+
+
+                <div class="calendar-week">
+
+                    <span class="sunday">일</span>
+                    <span>월</span>
+                    <span>화</span>
+                    <span>수</span>
+                    <span>목</span>
+                    <span>금</span>
+                    <span class="saturday">토</span>
+
+                </div>
+
+
+                <div
+                    class="calendar-grid"
+                    id="calendarGrid"
+                ></div>
+
+            </div>
+
+
+            <section class="selected-date-section">
+
+                <div class="section-title-row">
+
+                    <div>
+
+                        <span class="small-label">
+                            SCHEDULE
+                        </span>
+
+                        <h2 id="selectedDateTitle"></h2>
+
+                    </div>
+
+
+                    <span
+                        class="count-badge"
+                        id="selectedDateCount"
+                    >
+                        0
+                    </span>
+
+                </div>
+
+
+                <div
+                    class="calendar-todo-list"
+                    id="calendarTodoList"
+                ></div>
+
+
+                <div
+                    class="calendar-empty"
+                    id="calendarEmpty"
+                >
+
+                    <div class="calendar-empty-icon">
+                        🌿
+                    </div>
+
+                    <h3>
+                        이 날짜에는 일정이 없어요.
+                    </h3>
+
+                    <p>
+                        새로운 할 일을 추가해 보세요.
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="calendar-add-btn"
+                        id="calendarAddBtn"
+                    >
+                        + 일정 추가하기
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         06. COMPLETED
+    ====================================================== -->
+    <section class="screen" id="completedScreen">
+
+        <div class="app-container">
+
+            <header class="page-header">
+
+                <span class="small-label">
+                    COMPLETED
+                </span>
+
+                <h2>
+                    오늘도 잘했어요! 🎉
+                </h2>
+
+                <p>
+                    완료한 일을 모아서 확인해 보세요.
+                </p>
+
+            </header>
+
+
+            <section class="completed-summary">
+
+                <div class="summary-icon">
+                    ✨
+                </div>
+
+
+                <div class="summary-text">
+
+                    <span>
+                        완료한 할 일
+                    </span>
+
+                    <strong id="totalCompletedCount">
+                        0개
+                    </strong>
+
+                    <p id="completedMessage">
+                        하나씩 완료해 보세요.
+                    </p>
+
+                </div>
+
+
+                <div class="week-complete">
+
+                    <small>
+                        이번 주
+                    </small>
+
+                    <strong id="weekCompletedCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <span class="small-label">
+                        HISTORY
+                    </span>
+
+                    <h2>
+                        완료 기록
+                    </h2>
+
+                </div>
+
+
+                <span
+                    class="count-badge"
+                    id="completedCountBadge"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div
+                class="todo-list"
+                id="completedList"
+            ></div>
+
+
+            <div
+                class="empty-state"
+                id="completedEmpty"
+            >
+
+                <div class="empty-icon">
+                    ✨
+                </div>
+
+                <h3>
+                    아직 완료한 일이 없어요.
+                </h3>
+
+                <p>
+                    홈에서 할 일을 체크하면<br>
+                    이곳에 완료 기록이 나타나요.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         07. MY
+    ====================================================== -->
+    <section class="screen" id="myScreen">
+
+        <div class="app-container">
+
+            <header class="page-header">
+
+                <span class="small-label">
+                    MY
+                </span>
+
+                <h2>
+                    나의 하루 🌿
+                </h2>
+
+                <p>
+                    나의 기록과 앱 설정을 관리해요.
+                </p>
+
+            </header>
+
+
+            <div class="profile-card">
+
+                <div class="profile-icon">
+                    😊
+                </div>
+
+                <div class="profile-text">
+
+                    <strong>
+                        하루체크
+                    </strong>
+
+                    <p>
+                        오늘도 좋은 하루 보내세요!
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- 나의 기록 -->
+            <section class="my-stat-section">
+
+                <span class="small-label">
+                    MY RECORD
+                </span>
+
+                <h3>
+                    나의 기록
+                </h3>
+
+
+                <div class="my-stat-grid">
+
+                    <div class="my-stat-card">
+
+                        <span>
+                            📋
+                        </span>
+
+                        <strong id="myTotalTodos">
+                            0
+                        </strong>
+
+                        <p>
+                            전체 할 일
+                        </p>
+
+                    </div>
+
+
+                    <div class="my-stat-card">
+
+                        <span>
+                            ✅
+                        </span>
+
+                        <strong id="myCompletedTodos">
+                            0
+                        </strong>
+
+                        <p>
+                            완료
+                        </p>
+
+                    </div>
+
+
+                    <div class="my-stat-card">
+
+                        <span>
+                            🌱
+                        </span>
+
+                        <strong id="myRemainingTodos">
+                            0
+                        </strong>
+
+                        <p>
+                            남은 일
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 STEP 4 : 테마 설정
+            ================================================== -->
+            <section class="theme-setting-section">
+
+                <span class="small-label">
+                    APPEARANCE
+                </span>
+
+                <h3>
+                    화면 테마
+                </h3>
+
+
+                <div class="theme-card">
+
+                    <div>
+
+                        <strong>
+                            🌙 다크 모드
+                        </strong>
+
+                        <p>
+                            밤에는 눈이 편한 화면으로 변경해요.
+                        </p>
+
+                    </div>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="darkModeToggle"
+                        >
+
+                        <span class="switch-slider"></span>
+
+                    </label>
+
+                </div>
+
+            </section>
+
+
+            <!-- 설정 -->
+            <section class="my-setting-section">
+
+                <span class="small-label">
+                    SETTINGS
+                </span>
+
+                <h3>
+                    설정
+                </h3>
+
+
+                <div class="settings">
+
+                    <button type="button">
+
+                        <span>
+                            🔔 알림 설정
+                        </span>
+
+                        <span>›</span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="themeSettingBtn"
+                    >
+
+                        <span>
+                            🎨 테마 설정
+                        </span>
+
+                        <span>›</span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-screen="completedScreen"
+                    >
+
+                        <span>
+                            ✅ 완료한 할 일
+                        </span>
+
+                        <span>›</span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="resetDataBtn"
+                        class="danger-setting"
+                    >
+
+                        <span>
+                            🗑️ 데이터 초기화
+                        </span>
+
+                        <span>›</span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="appInfoBtn"
+                    >
+
+                        <span>
+                            ℹ️ 앱 정보
+                        </span>
+
+                        <span>›</span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         BOTTOM NAV
+    ====================================================== -->
+    <nav
+        class="bottom-nav"
+        id="bottomNav"
+    >
+
+        <button
+            type="button"
+            class="nav-btn active"
+            data-screen="homeScreen"
+        >
+            <span class="nav-icon">⌂</span>
+            <small>홈</small>
+        </button>
+
+
+        <button
+            type="button"
+            class="nav-btn"
+            data-screen="calendarScreen"
+        >
+            <span class="nav-icon">▦</span>
+            <small>캘린더</small>
+        </button>
+
+
+        <button
+            type="button"
+            class="nav-btn"
+            data-screen="completedScreen"
+        >
+            <span class="nav-icon">✓</span>
+            <small>완료</small>
+        </button>
+
+
+        <button
+            type="button"
+            class="nav-btn"
+            data-screen="myScreen"
+        >
+            <span class="nav-icon">☺</span>
+            <small>MY</small>
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         TODO 삭제 모달
+    ====================================================== -->
+    <div
+        class="modal"
+        id="deleteModal"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-icon">
+                🗑️
+            </div>
+
+            <h3>
+                이 할 일을 삭제하시겠습니까?
+            </h3>
+
+            <p>
+                삭제한 데이터는 다시 되돌릴 수 없어요.
+            </p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelDelete"
+                >
+                    취소
+                </button>
+
+                <button
+                    type="button"
+                    class="confirm-delete-btn"
+                    id="confirmDelete"
+                >
+                    삭제
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         데이터 초기화 모달
+    ====================================================== -->
+    <div
+        class="modal"
+        id="resetModal"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-icon">
+                ⚠️
+            </div>
+
+            <h3>
+                모든 할 일을 삭제할까요?
+            </h3>
+
+            <p>
+                등록한 일정과 완료 기록이<br>
+                모두 삭제되며 복구할 수 없어요.
+            </p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    id="cancelResetBtn"
+                >
+                    취소
+                </button>
+
+                <button
+                    type="button"
+                    class="confirm-delete-btn"
+                    id="confirmResetBtn"
+                >
+                    전체 삭제
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- 앱 정보 모달 -->
+    <div
+        class="modal"
+        id="infoModal"
+    >
+
+        <div class="modal-box">
+
+            <div class="modal-icon">
+                🌱
+            </div>
+
+            <h3>
+                하루체크
+            </h3>
+
+            <p>
+                Soft Smart Pastel Todo App<br>
+                Version 1.0
+            </p>
+
+
+            <button
+                type="button"
+                class="primary-btn"
+                id="closeInfoBtn"
+            >
+                확인
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- 토스트 -->
+    <div
+        class="toast"
+        id="toast"
+    ></div>
+
+</div>
+
+</body>
+</html>
