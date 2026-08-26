@@ -1,0 +1,3486 @@
+/* ==========================================================
+   기본 초기화
+========================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+}
+
+body {
+    font-family:
+        "Pretendard",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: #222;
+    background: #fff;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    border: 0;
+    background: none;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+
+/* ==========================================================
+   HEADER
+   전체 가로 : 100%
+========================================================== */
+#header {
+    position: relative;
+
+    width: 100%;
+
+    background: #fff;
+
+    border-top: 1px solid #111;
+    border-bottom: 1px solid #eeeeee;
+
+    z-index: 1000;
+}
+
+
+/* ==========================================================
+   HEADER INNER
+   요청 사이즈 : 1150px × 90px
+========================================================== */
+.header-inner {
+    position: relative;
+
+    width: 1150px;
+    height: 90px;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* ==========================================================
+   LOGO
+========================================================== */
+.logo {
+    flex: 0 0 78px;
+
+    width: 78px;
+
+    line-height: 0;
+}
+
+.logo a {
+    display: block;
+}
+
+.logo img {
+    display: block;
+
+    width: 78px;
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* ==========================================================
+   주메뉴 GNB
+
+   중요:
+   mega-menu의 column과 같은 크기로 맞춰
+   주메뉴 바로 아래에 2단메뉴가 오도록 설정
+========================================================== */
+.gnb {
+    position: relative;
+
+    margin-left: 55px;
+
+    height: 90px;
+}
+
+
+/* 주메뉴 컬럼 */
+.gnb-list {
+    display: grid;
+
+    /*
+        아래 mega-grid와 반드시 같은 값 사용
+        그래야 1단 / 2단 메뉴가 정확하게 정렬됩니다.
+    */
+    grid-template-columns:
+        110px
+        105px
+        105px
+        110px
+        110px;
+
+    height: 90px;
+}
+
+
+/* 각각의 주메뉴 */
+.gnb-item {
+    position: relative;
+
+    height: 90px;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* ==========================================================
+   주메뉴 글자
+========================================================== */
+.gnb-link {
+    position: relative;
+
+    display: inline-flex;
+    align-items: center;
+
+    height: 90px;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    letter-spacing: -0.6px;
+
+    color: #111;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================================
+   주메뉴 hover 밑줄
+
+   기본상태 : 밑줄 없음
+
+   hover시에만 글자의 실제 가로크기만큼 나타남
+
+   header 하단에서 20px 위
+========================================================== */
+.gnb-link::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    /*
+        header 높이 90px 기준
+        하단에서 20px 위
+    */
+    bottom: 20px;
+
+    width: 100%;
+    height: 2px;
+
+    background: #00a6b5;
+
+    transform: scaleX(0);
+
+    transform-origin: center;
+
+    transition: transform 0.25s ease;
+}
+
+
+/* 주메뉴 hover */
+.gnb-item:hover .gnb-link::after {
+    transform: scaleX(1);
+}
+
+
+/* ==========================================================
+   오른쪽 상단 UTIL 메뉴
+========================================================== */
+.util-menu {
+    position: absolute;
+
+    right: 0;
+    top: 8px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 17px;
+}
+
+.util-menu a {
+    position: relative;
+
+    font-size: 10px;
+    font-weight: 400;
+
+    color: #777;
+
+    white-space: nowrap;
+}
+
+
+/* 메뉴 사이 구분선 */
+.util-menu a:not(:last-child)::after {
+    content: "";
+
+    position: absolute;
+
+    right: -9px;
+    top: 50%;
+
+    width: 1px;
+    height: 8px;
+
+    background: #dedede;
+
+    transform: translateY(-50%);
+}
+
+
+/* ==========================================================
+   오른쪽 주문 / 장바구니 영역
+========================================================== */
+.header-actions {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+
+    padding-top: 13px;
+}
+
+
+/* ==========================================================
+   장바구니 버튼
+========================================================== */
+.cart-btn {
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* CSS로 만든 가방 아이콘
+   실제 이미지 사용 시 이 부분을 img로 교체 가능
+*/
+.cart-icon {
+    position: relative;
+
+    display: block;
+
+    width: 17px;
+    height: 17px;
+
+    border: 2px solid #222;
+    border-radius: 3px;
+}
+
+
+/* 가방 손잡이 */
+.cart-icon::before {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: -6px;
+
+    width: 7px;
+    height: 6px;
+
+    border: 2px solid #222;
+    border-bottom: 0;
+
+    border-radius: 5px 5px 0 0;
+
+    transform: translateX(-50%);
+}
+
+
+/* ==========================================================
+   주문하기 버튼
+========================================================== */
+.order-btn {
+    min-width: 104px;
+    height: 42px;
+
+    padding: 0 17px;
+
+    border-radius: 30px;
+
+    background: #00a6b5;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    color: #fff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 12px
+        rgba(0, 166, 181, 0.22);
+}
+
+
+/* 주문버튼 안 아이콘 */
+.order-icon {
+    width: 21px;
+    height: 21px;
+
+    border-radius: 50%;
+
+    background: #ffd400;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 9px;
+
+    color: #fff;
+}
+
+
+/* ==========================================================
+   전체 2단 메뉴
+========================================================== */
+.mega-menu {
+    position: absolute;
+
+    top: 90px;
+    left: 0;
+
+    width: 100%;
+    height: 306px;
+
+    background: #fff;
+
+    border-top: 1px solid #f2f2f2;
+    border-bottom: 1px solid #ededed;
+
+    /*
+        jQuery slideDown()으로 열기 때문에
+        처음에는 반드시 none
+    */
+    display: none;
+
+    overflow: hidden;
+
+    z-index: 999;
+}
+
+
+/* ==========================================================
+   2단메뉴 INNER
+   Header와 동일 : 1150px
+========================================================== */
+.mega-inner {
+    width: 1150px;
+    height: 306px;
+
+    margin: 0 auto;
+
+    display: flex;
+}
+
+
+/* ==========================================================
+   로고 + GNB 왼쪽 여백과 동일하게 맞춤
+
+   로고 78px + GNB margin-left 55px
+   = 총 133px
+========================================================== */
+.mega-logo-space {
+    flex: 0 0 133px;
+    width: 133px;
+}
+
+
+/* ==========================================================
+   2단메뉴 GRID
+
+   위 .gnb-list와 반드시 같은 column 사이즈
+========================================================== */
+.mega-grid {
+    display: grid;
+
+    grid-template-columns:
+        110px
+        105px
+        105px
+        110px
+        110px;
+
+    padding-top: 19px;
+}
+
+
+/* ==========================================================
+   각각의 2단메뉴
+========================================================== */
+.mega-column {
+    font-size: 14px;
+    font-weight: 400;
+
+    letter-spacing: -0.4px;
+}
+
+
+/* 각 리스트 간격 */
+.mega-column li {
+    margin-bottom: 17px;
+}
+
+
+/* 기본 글자색 */
+.mega-column a {
+    display: inline-block;
+
+    color: #555;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.2s ease,
+        font-weight 0.2s ease;
+}
+
+
+/* ==========================================================
+   요청사항 9
+   2단메뉴 hover 시 #000
+========================================================== */
+.mega-column a:hover {
+    color: #000;
+
+    font-weight: 600;
+}
+
+
+/* 시안의 파란색 브랜드 메뉴 */
+.mega-column a.point {
+    color: #00a6b5;
+    font-weight: 600;
+}
+
+
+/* point 메뉴도 hover하면 검정색 */
+.mega-column a.point:hover {
+    color: #000;
+}
+
+
+/* ==========================================================
+   메뉴가 열려 있을 때
+   주메뉴 hover 범위를 자연스럽게 유지하기 위한 설정
+========================================================== */
+#header.menu-open {
+    border-bottom-color: transparent;
+}
+
+/* ==================================================
+   SLIDE SECTION
+================================================== */
+.main-slide-section {
+  width: 100%;
+
+  /*
+    요청사항
+    주메뉴와 슬라이드 사이 간격 50px
+  */
+  margin-top: 50px;
+
+  background: #fff;
+}
+
+
+/* ==================================================
+   INNER
+   이전 header와 동일한 1150px 기준
+================================================== */
+.slide-inner {
+  width: 1150px;
+
+  margin: 0 auto;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  /*
+    메인배너와 오른쪽 카드 간격
+  */
+  gap: 20px;
+}
+
+
+/* ==================================================
+   MAIN BANNER
+   800 × 336
+================================================== */
+.main-banner-wrap {
+  position: relative;
+
+  flex: 0 0 800px;
+
+  width: 800px;
+  height: 336px;
+
+  overflow: hidden;
+
+  /*
+    요청사항
+    모서리 반경 16px
+  */
+  border-radius: 16px;
+
+  background: #eee;
+}
+
+
+/* ==================================================
+   SWIPER
+================================================== */
+.mainBannerSwiper {
+  width: 800px;
+  height: 336px;
+
+  border-radius: 16px;
+}
+
+
+.mainBannerSwiper .swiper-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+
+.mainBannerSwiper .swiper-slide {
+  width: 800px;
+  height: 336px;
+
+  overflow: hidden;
+
+  border-radius: 16px;
+}
+
+
+/* ==================================================
+   배너 링크
+================================================== */
+.banner-link {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* ==================================================
+   배너 이미지
+
+   이미지 실제 크기가 달라도
+   800 × 336 영역에 맞게 표시
+================================================== */
+.banner-link img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 16px;
+}
+
+
+/* ==================================================
+   배너 CONTROL
+
+   시안처럼 오른쪽 아래에
+   반투명 검정색 컨트롤 배치
+================================================== */
+.banner-control {
+  position: absolute;
+
+  right: 68px;
+  bottom: 20px;
+
+  z-index: 20;
+
+  height: 38px;
+
+  padding: 0 10px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 19px;
+
+  background: rgba(56, 48, 44, 0.82);
+
+  color: #fff;
+}
+
+
+/* ==================================================
+   이전 / 다음 공통버튼
+================================================== */
+.banner-prev,
+.banner-next {
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+
+/* ==================================================
+   이전버튼 이미지 경로
+
+   사용자가 교체할 이미지
+================================================== */
+.banner-prev {
+  background-image:
+    url("/images/imgi_148_main_banner_prev_arr.svg");
+}
+
+
+/* ==================================================
+   다음버튼 이미지 경로
+
+   사용자가 교체할 이미지
+================================================== */
+.banner-next {
+  background-image:
+    url("/images/imgi_149_main_banner_next_arr.svg");
+}
+
+
+/* ==================================================
+   페이지 번호
+   1 / 3
+================================================== */
+.banner-pagination {
+  min-width: 58px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 5px;
+
+  font-size: 14px;
+
+  line-height: 1;
+}
+
+
+.current-page {
+  font-weight: 600;
+}
+
+
+.total-page {
+  font-weight: 400;
+
+  opacity: 0.85;
+}
+
+
+.page-slash {
+  opacity: 0.65;
+}
+
+
+/* ==================================================
+   시안의 + 버튼
+================================================== */
+.banner-more-btn {
+  position: absolute;
+
+  right: 22px;
+  bottom: 20px;
+
+  z-index: 20;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+
+  background: rgba(56, 48, 44, 0.88);
+
+  color: #fff;
+
+  font-size: 23px;
+  font-weight: 300;
+
+  line-height: 1;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.banner-more-btn:hover {
+  background: #222;
+
+  transform: scale(1.05);
+}
+
+
+/* ==================================================
+   RIGHT SIDE CARD
+   290 × 354
+================================================== */
+.mile-card {
+  flex: 0 0 290px;
+
+  width: 290px;
+  height: 354px;
+
+  padding: 25px 22px 22px;
+
+  /*
+    요청사항
+    모서리 반경 16px
+  */
+  border-radius: 16px;
+
+  background: #414141;
+
+  color: #fff;
+}
+
+
+/* ==================================================
+   카드 제목
+================================================== */
+.mile-title {
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+
+/* 노란 M 아이콘 */
+.mile-symbol {
+  width: 22px;
+  height: 22px;
+
+  margin-right: 7px;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #ffd300;
+
+  color: #fff;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* 제목 우측 화살표 */
+.mile-arrow {
+  margin-left: 8px;
+
+  margin-top: -2px;
+
+  font-size: 26px;
+
+  font-weight: 300;
+
+  color: #ddd;
+}
+
+
+/* ==================================================
+   쿠폰 / 스탬프 TAB
+================================================== */
+.mile-tab {
+  width: 100%;
+  height: 44px;
+
+  margin-top: 10px;
+
+  display: flex;
+
+  overflow: hidden;
+
+  border-radius: 9px;
+
+  background: #595959;
+}
+
+
+.mile-tab a {
+  position: relative;
+
+  width: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+
+/* 가운데 구분선 */
+.mile-tab a:first-child::after {
+  content: "";
+
+  position: absolute;
+
+  top: 12px;
+  right: 0;
+
+  width: 1px;
+  height: 20px;
+
+  background: rgba(255, 255, 255, 0.15);
+}
+
+
+.mile-tab a:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* ==================================================
+   회원정보 BOX
+================================================== */
+.member-box {
+  position: relative;
+
+  width: 100%;
+  height: 210px;
+
+  margin-top: 8px;
+
+  padding: 15px 14px;
+
+  border-radius: 10px;
+
+  background: #575757;
+}
+
+
+/* ==================================================
+   회원등급 상단
+================================================== */
+.member-head {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.member-head strong {
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+
+.member-head > a {
+  color: #aaa;
+
+  font-size: 10px;
+
+  font-weight: 400;
+}
+
+
+.member-head > a span {
+  margin-left: 2px;
+}
+
+
+/* ==================================================
+   로그인 안내
+================================================== */
+.login-message {
+  margin-top: 24px;
+
+  color: #fff;
+
+  font-size: 12px;
+}
+
+
+.login-message a {
+  display: inline-block;
+
+  padding-bottom: 2px;
+
+  border-bottom: 1px solid #fff;
+
+  font-weight: 500;
+}
+
+
+.login-message span {
+  margin-left: 2px;
+}
+
+
+.login-message p {
+  margin-top: 7px;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  line-height: 1.5;
+}
+
+
+/* ==================================================
+   하단 브랜드 아이콘
+   별도 이미지 교체 없이 CSS 구현
+================================================== */
+.brand-icons {
+  position: absolute;
+
+  left: 14px;
+  bottom: 14px;
+
+  display: flex;
+
+  align-items: center;
+}
+
+
+/* 브랜드 원형 공통 */
+.brand-circle {
+  width: 26px;
+  height: 26px;
+
+  margin-right: -3px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  border: 2px solid #4d4d4d;
+
+  border-radius: 50%;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+/* 회색 아이콘 */
+.brand-gray {
+  background: #e7e4dc;
+
+  color: #666;
+}
+
+
+/* 녹색 아이콘 */
+.brand-green {
+  background: #20a75a;
+
+  color: #fff;
+}
+
+
+/* 빨간 아이콘 */
+.brand-red {
+  background: #ee3e37;
+
+  color: #fff;
+}
+
+
+/* ==================================================
+   반응형 최소 보정
+
+   PC 시안이므로 1150px 이상에서는
+   정확히 지정한 사이즈 유지
+================================================== */
+@media screen and (max-width: 1180px) {
+
+  .slide-inner {
+    width: calc(100% - 40px);
+  }
+
+}
+
+/* ==================================================
+   보조섹션 전체 위치
+
+   핵심:
+   전체 inner 1150px를 먼저 가운데 정렬합니다.
+
+   그러면 보조섹션이 화면 왼쪽 끝으로
+   붙는 현상이 사라집니다.
+================================================== */
+.sub-section-area {
+  width: 1150px;
+
+  /*
+    전체 페이지 가운데 정렬
+  */
+  margin-left: auto;
+  margin-right: auto;
+
+  /*
+    요청사항
+    메인배너와 20px 간격
+  */
+  margin-top: 20px;
+
+  /*
+    메인배너가 1150px inner의
+    왼쪽에서 시작하기 때문에
+    보조섹션도 동일한 위치에서 시작
+  */
+  display: flex;
+  justify-content: flex-start;
+}
+
+
+/* ==================================================
+   보조섹션 외곽 박스
+
+   메인배너와 동일하게 800px로 만들어서
+
+   메인배너 왼쪽 모서리
+   ↓
+   보조섹션 왼쪽 모서리
+
+   메인배너 오른쪽 모서리
+   ↓
+   보조섹션 오른쪽 모서리
+
+   정확하게 일치시킵니다.
+================================================== */
+.sub-section-box {
+  width: 800px;
+  height: 83px;
+
+  padding: 10px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  border: 1px solid #e3e3e3;
+
+  border-radius: 16px;
+
+  background: #fff;
+
+  box-sizing: border-box;
+}
+
+
+/* ==================================================
+   Eatz 전체 영역
+================================================== */
+.eatz-all-btn {
+  width: 195px;
+  height: 62px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-family: "Noto Sans KR", sans-serif;
+
+  /*
+    요청사항
+  */
+  font-size: 18px;
+}
+
+
+/* Eatz */
+.eatz-logo-text {
+  color: #05a7b8;
+
+  font-size: 22px;
+  font-weight: 700;
+
+  letter-spacing: -1px;
+}
+
+
+/* 잇츠 전체 */
+.eatz-all-text {
+  color: #222;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+/* ==================================================
+   아래 화살표
+   이미지 사용하지 않고 구현
+================================================== */
+.down-circle {
+  width: 24px;
+  height: 24px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: #454545;
+
+  color: #fff;
+
+  font-size: 9px;
+
+  line-height: 1;
+}
+
+
+/* ==================================================
+   배달 / 매장식사 / 포장
+================================================== */
+.service-btn {
+  /*
+    남은 공간을 세 버튼이
+    동일하게 나눠 사용
+  */
+  flex: 1;
+
+  height: 62px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 11px;
+
+  background: #08a6b7;
+
+  color: #fff;
+
+  cursor: pointer;
+
+  font-family: "Noto Sans KR", sans-serif;
+
+  /*
+    요청사항
+  */
+  font-size: 18px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+
+/* ==================================================
+   아이콘 영역
+
+   요청사항
+   30 × 24
+================================================== */
+.service-icon {
+  width: 30px;
+  height: 24px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 18px;
+
+  line-height: 24px;
+}
+
+
+/* 버튼 hover */
+.service-btn:hover {
+  background: #008f9e;
+}
+
+/* =========================================
+   쿠폰 섹션 전체
+
+   요청사항
+   상단 margin : 80px
+   배경 : #f5f6f8
+========================================= */
+.coupon-section {
+    width: 100%;
+
+    margin-top: 80px;
+
+    padding: 40px 0 60px;
+
+    background: #f5f6f8;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   전체 inner
+
+   요청사항 : 1140px
+========================================= */
+.coupon-inner {
+    position: relative;
+
+    width: 1140px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   제목 영역
+   반드시 1140 안에서 정렬
+========================================= */
+.coupon-title-area {
+    width: 100%;
+
+    margin-bottom: 25px;
+}
+
+
+/* 제목 링크 */
+.coupon-title-link {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 13px;
+
+    max-width: 100%;
+}
+
+
+/* 제목 */
+.coupon-title {
+    margin: 0;
+
+    color: #111;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+}
+
+
+/* 제목 오른쪽 > */
+.coupon-title-arrow {
+    width: 10px;
+    height: 10px;
+
+    flex-shrink: 0;
+
+    border-top: 2px solid #111;
+    border-right: 2px solid #111;
+
+    transform: rotate(45deg);
+}
+
+
+/* =========================================
+   슬라이더 전체 영역
+========================================= */
+.coupon-slider-area {
+    position: relative;
+
+    width: 1140px;
+
+    margin: 0 auto;
+
+    /* 중요
+       오른쪽에 5번째 쿠폰이 잘려 보이지 않도록
+    */
+    overflow: visible;
+}
+
+
+/* =========================================
+   Swiper
+
+   여기에서 잘린 카드가 보이지 않도록 처리
+========================================= */
+.couponSwiper {
+    width: 1140px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   4개 카드 정렬
+
+   273 × 4 = 1092
+   남은 48px
+
+   카드 사이 gap 16px × 3 = 48px
+
+   따라서
+   273 + 16 + 273 + 16 + 273 + 16 + 273
+   = 정확히 1140px
+========================================= */
+.couponSwiper .swiper-wrapper {
+    align-items: stretch;
+}
+
+
+/* =========================================
+   Swiper slide
+========================================= */
+.couponSwiper .swiper-slide {
+    width: 273px !important;
+    height: 273px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   쿠폰 카드
+
+   요청사항 : 273 × 273
+========================================= */
+.coupon-card {
+    position: relative;
+
+    width: 273px;
+    height: 273px;
+
+    background: #fff;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   상품 이미지
+========================================= */
+.coupon-img {
+    width: 100%;
+    height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-top: 12px;
+}
+
+
+/* 실제 이미지 */
+.coupon-img img {
+    display: block;
+
+    width: 120px;
+    height: 100px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================
+   상품 정보 영역
+========================================= */
+.coupon-info {
+    width: 100%;
+
+    padding: 5px 20px 0;
+}
+
+
+/* 브랜드 */
+.coupon-brand {
+    margin-bottom: 4px;
+
+    color: #ff493e;
+
+    font-size: 11px;
+    font-weight: 500;
+}
+
+
+/* 상품명 */
+.coupon-name {
+    margin-bottom: 8px;
+
+    overflow: hidden;
+
+    color: #111;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   가격
+========================================= */
+.coupon-price {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    white-space: nowrap;
+}
+
+
+/* 할인율 */
+.coupon-discount {
+    color: #ff4036;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* 판매가 */
+.coupon-sale {
+    color: #111;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* 정상가 */
+.coupon-origin {
+    color: #999;
+
+    font-size: 11px;
+    font-weight: 400;
+}
+
+
+/* =========================================
+   쿠폰 받기
+========================================= */
+.coupon-download {
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border-top: 1px dashed #e7e7e7;
+
+    background: #fff;
+
+    color: #222;
+
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+/* =========================================
+   쿠폰 양쪽 반원 홈
+========================================= */
+.coupon-download::before,
+.coupon-download::after {
+    content: "";
+
+    position: absolute;
+
+    top: -12px;
+
+    width: 24px;
+    height: 24px;
+
+    background: #f5f6f8;
+
+    border-radius: 50%;
+}
+
+
+/* 왼쪽 홈 */
+.coupon-download::before {
+    left: -12px;
+}
+
+
+/* 오른쪽 홈 */
+.coupon-download::after {
+    right: -12px;
+}
+
+
+/* =========================================
+   다운로드 아이콘
+   이미지 없이 CSS 구현
+========================================= */
+.download-icon {
+    position: relative;
+
+    width: 16px;
+    height: 16px;
+}
+
+
+/* 세로선 */
+.download-icon::before {
+    content: "";
+
+    position: absolute;
+
+    left: 7px;
+    top: 1px;
+
+    width: 2px;
+    height: 9px;
+
+    background: #111;
+}
+
+
+/* 화살촉 */
+.download-icon::after {
+    content: "";
+
+    position: absolute;
+
+    left: 4px;
+    top: 5px;
+
+    width: 6px;
+    height: 6px;
+
+    border-right: 2px solid #111;
+    border-bottom: 2px solid #111;
+
+    transform: rotate(45deg);
+}
+
+
+/* =========================================
+   좌우 네비게이션 버튼 공통
+========================================= */
+.coupon-prev,
+.coupon-next {
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 20;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 50%;
+
+    transform: translateY(-50%);
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================
+   왼쪽 버튼
+
+   카드 바깥에 위치
+========================================= */
+.coupon-prev {
+    left: -19px;
+}
+
+
+/* =========================================
+   오른쪽 버튼
+
+   중요:
+   5번째 카드가 잘려 보이는 것이 아니라
+   버튼만 바깥쪽에 보임
+========================================= */
+.coupon-next {
+    right: -19px;
+}
+
+
+/* 왼쪽 화살표 */
+.coupon-prev span {
+    width: 9px;
+    height: 9px;
+
+    border-left: 2px solid #c8c8c8;
+    border-bottom: 2px solid #c8c8c8;
+
+    transform: rotate(45deg);
+}
+
+
+/* 오른쪽 화살표 */
+.coupon-next span {
+    width: 9px;
+    height: 9px;
+
+    border-top: 2px solid #c8c8c8;
+    border-right: 2px solid #c8c8c8;
+
+    transform: rotate(45deg);
+}
+
+
+/* 비활성 버튼 */
+.coupon-prev.swiper-button-disabled,
+.coupon-next.swiper-button-disabled {
+    opacity: 0.35;
+}
+
+
+/* =========================================
+   페이지 1 / 8
+========================================= */
+.coupon-page {
+    margin-top: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    color: #555;
+
+    font-size: 13px;
+}
+
+/* =========================================
+   이달의 핫메뉴 전체 섹션
+========================================= */
+.hotmenu-section {
+    width: 100%;
+
+    padding: 43px 0 1px;
+
+    background: #fff;
+
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+
+/* =========================================
+   inner
+   제목과 콘텐츠가 바깥으로 나가지 않도록
+   전체 기준 영역 지정
+========================================= */
+.hotmenu-inner {
+    width: 1140px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   제목
+
+   inner 1140px 안에서만 표시
+========================================= */
+.hotmenu-title {
+    width: 100%;
+
+    margin: 0 0 20px;
+
+    color: #111;
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   브랜드 탭
+========================================= */
+.hotmenu-tabs {
+    width: 100%;
+
+    margin-bottom: 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 27px;
+}
+
+
+/* 탭 공통 */
+.hotmenu-tab {
+    position: relative;
+
+    color: #888;
+
+    font-size: 14px;
+
+    /* 요청사항 */
+    font-weight: 400;
+
+    white-space: nowrap;
+}
+
+
+/* 활성 탭 */
+.hotmenu-tab.active {
+    color: #111;
+
+    font-weight: 600;
+}
+
+
+/* 활성 탭 밑줄 */
+.hotmenu-tab.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 100%;
+    height: 2px;
+
+    background: #111;
+}
+
+
+/* =========================================
+   전체 콘텐츠
+
+   왼쪽 큰 카드 + 오른쪽 5개
+========================================= */
+.hotmenu-content {
+    width: 100%;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    /* 요청사항
+       큰 카드와 작은 카드 영역 사이 40px
+    */
+    gap: 40px;
+}
+
+
+/* =========================================
+   왼쪽 큰 카드
+========================================= */
+.hotmenu-main-card {
+    position: relative;
+
+    width: 190px;
+    height: 310px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    /* 요청사항 */
+    border-radius: 16px;
+
+    background: #ddd;
+}
+
+
+/* 큰 카드 이미지 */
+.hotmenu-main-card img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+/* =========================================
+   큰 카드 위 텍스트
+========================================= */
+.hotmenu-main-text {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 0 20px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: #fff;
+
+    text-align: center;
+}
+
+
+/* 메인 문구 */
+.hotmenu-main-text strong {
+    font-size: 20px;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+}
+
+
+/* 메뉴 더보기 */
+.hotmenu-main-text span {
+    margin-top: 25px;
+
+    font-size: 14px;
+
+    font-weight: 400;
+}
+
+
+/* =========================================
+   오른쪽 작은카드 5개를 감싸는 요소
+
+   요청사항 그대로 적용
+========================================= */
+.hotmenu-small-list {
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    /* 작은 카드 사이 gap 20px */
+    gap: 20px;
+}
+
+
+/* =========================================
+   작은 상품 하나
+========================================= */
+.hotmenu-item {
+    flex: 1;
+
+    min-width: 0;
+
+    font-size: 14px;
+
+    font-weight: 400;
+}
+
+
+/* =========================================
+   작은 카드 이미지 박스
+========================================= */
+.hotmenu-item-image {
+    width: 100%;
+    height: 174px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #fff;
+
+    border: 1px solid #e8e8e8;
+
+    /* 요청사항 */
+    border-radius: 16px;
+}
+
+
+/* 상품 이미지 */
+.hotmenu-item-image img {
+    display: block;
+
+    width: 90%;
+    height: 90%;
+
+    object-fit: contain;
+}
+
+
+/* =========================================
+   상품정보
+========================================= */
+.hotmenu-item-info {
+    padding: 13px 8px 0;
+}
+
+
+/* 상품명 */
+.hotmenu-item-info h3 {
+    overflow: hidden;
+
+    margin-bottom: 7px;
+
+    color: #222;
+
+    font-size: 14px;
+
+    /* 요청사항 */
+    font-weight: 400;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+/* 가격 */
+.hotmenu-item-info strong {
+    display: block;
+
+    color: #111;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+/* =========================================
+   브랜드 바로가기 전체 섹션
+========================================= */
+.brand-shortcut-section {
+    width: 100%;
+
+    /* 요청사항 : 상단 마진 80px */
+    margin-top: 80px;
+
+    padding: 55px 0 50px;
+
+    background: #f5f6f8;
+
+    overflow: hidden;
+
+    font-family: "Noto Sans KR", sans-serif;
+}
+
+
+/* =========================================
+   INNER
+
+   요청사항 : 1140px
+========================================= */
+.brand-shortcut-inner {
+    position: relative;
+
+    width: 1140px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   제목
+========================================= */
+.brand-shortcut-title-wrap {
+    width: 100%;
+
+    margin-bottom: 25px;
+}
+
+
+/* 제목이 inner 밖으로 벗어나지 않도록 */
+.brand-shortcut-title {
+    width: 100%;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    color: #111;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    line-height: 1.4;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   슬라이더 영역
+========================================= */
+.brand-slider-wrap {
+    position: relative;
+
+    width: 1140px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   Swiper
+
+   카드 5개만 깔끔하게 표시
+========================================= */
+.brandSwiper {
+    width: 1100px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   카드
+
+   200px × 5개
+   gap 25px × 4개
+
+   1000 + 100 = 1100px
+========================================= */
+.brandSwiper .swiper-slide {
+    width: 200px !important;
+
+    height: 250px;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================
+   카드 기본 디자인
+========================================= */
+.brand-card {
+    position: relative;
+
+    display: block;
+
+    width: 200px;
+    height: 250px;
+
+    overflow: hidden;
+
+    background: #222;
+
+    border-radius: 16px;
+}
+
+
+/* =========================================
+   브랜드 이미지
+========================================= */
+.brand-bg {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        opacity .55s ease,
+        transform .7s ease,
+        filter .55s ease;
+}
+
+
+/* =========================================
+   영어 브랜드명
+========================================= */
+.brand-en {
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    z-index: 5;
+
+    width: 100%;
+
+    padding: 0 15px;
+
+    color: #fff;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    text-align: center;
+
+    line-height: 1.3;
+
+    transform: translateY(-50%);
+
+    transition:
+        top .55s ease,
+        transform .55s ease,
+        opacity .55s ease;
+}
+
+
+/* =========================================
+   한글 브랜드명
+========================================= */
+.brand-ko {
+    position: absolute;
+
+    left: 0;
+    bottom: 28px;
+
+    z-index: 5;
+
+    width: 100%;
+
+    padding: 0 12px;
+
+    color: #fff;
+
+    font-size: 14px;
+
+    /* 요청사항 */
+    font-weight: 400;
+
+    text-align: center;
+
+    line-height: 1.4;
+
+    transition:
+        opacity .45s ease,
+        transform .45s ease;
+}
+
+
+/* =========================================
+   중앙 카드 활성 상태
+
+   영어 브랜드명이 부드럽게 위로 이동
+========================================= */
+.brand-slide.is-center .brand-en {
+    top: 24px;
+
+    transform: translateY(0);
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   가운데 카드에서는
+   한글 브랜드명이 살짝 사라짐
+========================================= */
+.brand-slide.is-center .brand-ko {
+    opacity: 0;
+
+    transform: translateY(12px);
+}
+
+
+/* =========================================
+   중앙 카드 이미지 효과
+
+   data-active 이미지로 변경되며
+   자연스럽게 확대
+========================================= */
+.brand-slide.is-center .brand-bg {
+    transform: scale(1.05);
+}
+
+
+/* =========================================
+   활성 카드에 약간 어두운 레이어
+   음식 이미지 위의 글자가 잘 보이게 함
+========================================= */
+.brand-card::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 2;
+
+    background: rgba(0, 0, 0, 0);
+
+    transition: background .55s ease;
+
+    pointer-events: none;
+}
+
+.brand-slide.is-center .brand-card::after {
+    background: rgba(0, 0, 0, .12);
+}
+
+
+/* 글자는 레이어 위 */
+.brand-en,
+.brand-ko {
+    z-index: 10;
+}
+
+
+/* =========================================
+   좌우 버튼 공통
+========================================= */
+.brand-prev,
+.brand-next {
+    position: absolute;
+
+    top: 50%;
+
+    z-index: 30;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 50%;
+
+    transform: translateY(-50%);
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .04);
+}
+
+
+/* 왼쪽 */
+.brand-prev {
+    left: 0;
+}
+
+
+/* 오른쪽 */
+.brand-next {
+    right: 0;
+}
+
+
+/* =========================================
+   왼쪽 화살표
+========================================= */
+.brand-prev span {
+    width: 9px;
+    height: 9px;
+
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+
+    transform: rotate(45deg);
+}
+
+
+/* =========================================
+   오른쪽 화살표
+========================================= */
+.brand-next span {
+    width: 9px;
+    height: 9px;
+
+    border-top: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+
+    transform: rotate(45deg);
+}
+
+
+/* =========================================
+   하단 진행 영역
+========================================= */
+.brand-controls {
+    margin-top: 27px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+/* =========================================
+   진행상태바
+========================================= */
+.brand-progress {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+/* 기본 점 */
+.progress-item {
+    display: block;
+
+    width: 7px;
+    height: 7px;
+
+    background: #8c8c8c;
+
+    border-radius: 50%;
+
+    transition:
+        width .3s ease,
+        background .3s ease;
+}
+
+
+/* 현재 위치 */
+.progress-item.active {
+    width: 19px;
+
+    background: #111;
+
+    border-radius: 20px;
+}
+
+
+/* =========================================
+   1 / 10 페이지
+========================================= */
+.brand-page {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    color: #555;
+
+    font-size: 13px;
+}
+
+/* =========================================
+   EATZ 쇼핑 전체 섹션
+========================================= */
+.shopping-section {
+    width: 100%;
+
+    padding: 40px 0 30px;
+
+    background: #fff;
+
+    font-family: "Noto Sans KR", sans-serif;
+
+    color: #111;
+}
+
+
+/* =========================================
+   INNER
+   요청사항 : 1140px
+========================================= */
+.shopping-inner {
+    position: relative;
+
+    width: 1140px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   제목
+========================================= */
+.shopping-title-area {
+    width: 100%;
+
+    margin-bottom: 21px;
+}
+
+
+.shopping-title-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.shopping-title {
+    color: #111;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+}
+
+
+/* 제목 오른쪽 화살표 */
+.shopping-title-arrow {
+    width: 9px;
+    height: 9px;
+
+    border-top: 2px solid #111;
+    border-right: 2px solid #111;
+
+    transform: rotate(45deg);
+}
+
+
+/* =========================================
+   MD / 원두
+========================================= */
+.shopping-tabs {
+    height: 31px;
+
+    margin-bottom: 27px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+}
+
+
+.shopping-tab {
+    position: relative;
+
+    padding-bottom: 7px;
+
+    color: #999;
+
+    font-size: 14px;
+
+    font-weight: 400;
+}
+
+
+.shopping-tab.active {
+    color: #111;
+
+    font-weight: 600;
+}
+
+
+/* 활성 탭 밑줄 */
+.shopping-tab.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background: #111;
+}
+
+
+/* =========================================
+   슬라이드 전체
+========================================= */
+.shopping-slider-wrap {
+    position: relative;
+
+    width: 1140px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   SWIPER
+
+   5개의 카드만 화면에 보이도록
+   바깥 상품은 잘라냄
+========================================= */
+.shoppingSwiper {
+    width: 1140px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   5개 카드 정렬
+
+   212 × 5 = 1060
+   20 × 4 = 80
+   1060 + 80 = 1140px
+========================================= */
+.shoppingSwiper .swiper-wrapper {
+    display: flex;
+
+    align-items: stretch;
+}
+
+
+/* =========================================
+   각각의 슬라이드
+
+   두 번째 카드가 튀어나오는 현상을
+   방지하기 위해 모든 높이를 동일하게 고정
+========================================= */
+.shoppingSwiper .swiper-slide {
+    width: 212px !important;
+
+    height: auto;
+
+    flex-shrink: 0;
+
+    align-self: stretch;
+}
+
+
+/* =========================================
+   상품 카드
+========================================= */
+.shopping-card {
+    width: 212px;
+
+    height: 355px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: stretch;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    font-weight: 400;
+}
+
+
+/* =========================================
+   이미지 영역
+
+   ★ 가장 중요한 수정 ★
+
+   이미지 크기나 실제 파일 높이가 달라도
+   모든 카드 이미지 박스는 212 × 212로 고정
+
+   따라서 두 번째 카드가 위로 튀어나오지 않음
+========================================= */
+.shopping-image {
+    width: 212px;
+    height: 212px;
+
+    min-height: 212px;
+    max-height: 212px;
+
+    flex: 0 0 212px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+
+    /* 요청사항 */
+    border-radius: 16px;
+}
+
+
+/* =========================================
+   실제 상품 이미지
+
+   크기가 달라도 동일한 박스 안에 맞춤
+========================================= */
+.shopping-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    object-position: center;
+
+    border-radius: 16px;
+
+    transition: transform .3s ease;
+}
+
+
+/* Hover */
+.shopping-card:hover .shopping-image img {
+    transform: scale(1.035);
+}
+
+
+/* =========================================
+   상품 내용
+
+   모든 카드의 텍스트 시작선도 동일
+========================================= */
+.shopping-info {
+    width: 100%;
+
+    padding: 13px 7px 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    flex: 1;
+}
+
+
+/* =========================================
+   브랜드
+========================================= */
+.shopping-brand {
+    height: 20px;
+
+    margin: 0 0 4px;
+
+    overflow: hidden;
+
+    color: #159b48;
+
+    font-size: 11px;
+
+    font-weight: 500;
+
+    line-height: 20px;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+/* 엔제리너스 등 다른 브랜드 */
+.shopping-brand.angelinus {
+    color: #555;
+}
+
+
+/* =========================================
+   상품명
+
+   요청사항:
+   기본 400보다 좀 더 진하게
+========================================= */
+.shopping-name {
+    height: 40px;
+
+    margin: 0;
+
+    overflow: hidden;
+
+    color: #111;
+
+    font-size: 14px;
+
+    /* 조금 더 진하게 */
+    font-weight: 600;
+
+    line-height: 20px;
+
+    letter-spacing: -0.3px;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+
+/* =========================================
+   가격 영역
+
+   상품명과 가격 간격 : 18px
+========================================= */
+.shopping-price-area {
+    min-height: 42px;
+
+    margin-top: 18px;
+}
+
+
+/* 할인율 + 가격 */
+.shopping-sale-line {
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+}
+
+
+/* 할인율 */
+.shopping-discount {
+    color: #ff3c32;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* 가격 */
+.shopping-price {
+    display: block;
+
+    color: #111;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+/* 기존 가격 */
+.shopping-origin {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #999;
+
+    font-size: 11px;
+
+    font-weight: 400;
+}
+
+
+/* =========================================
+   좌우 버튼 공통
+========================================= */
+.shopping-prev,
+.shopping-next {
+    position: absolute;
+
+    top: 106px;
+
+    z-index: 30;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #fff;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 50%;
+
+    transform: translateY(-50%);
+
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .05);
+}
+
+
+/* =========================================
+   이전 버튼
+========================================= */
+.shopping-prev {
+    left: -19px;
+}
+
+
+/* =========================================
+   다음 버튼
+========================================= */
+.shopping-next {
+    right: -19px;
+}
+
+
+/* 왼쪽 화살표 */
+.shopping-prev span {
+    width: 9px;
+    height: 9px;
+
+    border-left: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+
+    transform: rotate(45deg);
+}
+
+
+/* 오른쪽 화살표 */
+.shopping-next span {
+    width: 9px;
+    height: 9px;
+
+    border-top: 2px solid #ccc;
+    border-right: 2px solid #ccc;
+
+    transform: rotate(45deg);
+}
+
+
+/* =========================================
+   1 / 8 페이지
+========================================= */
+.shopping-page {
+    margin-top: 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    color: #555;
+
+    font-size: 13px;
+
+    font-weight: 400;
+}
+
+
+/* =========================================
+   접근성 focus
+========================================= */
+.shopping-card:focus-visible,
+.shopping-prev:focus-visible,
+.shopping-next:focus-visible,
+.shopping-tab:focus-visible {
+    outline: 2px solid #00a5b8;
+
+    outline-offset: 3px;
+}
+
+/* =========================================
+   FOOTER 전체
+
+   쇼핑섹션과 간격 : 100px
+   전체 너비 : 100%
+   높이 : 430px
+========================================= */
+.footer {
+    position: relative;
+
+    width: 100%;
+    height: 430px;
+
+    /* 요청사항 */
+    margin-top: 30px;
+
+    background: #f7f7f8;
+
+    border-top: 1px solid #e5e5e5;
+
+    font-family: "Noto Sans KR", sans-serif;
+
+    color: #666;
+}
+
+
+/* =========================================
+   FOOTER INNER
+   width : 1150px
+========================================= */
+.footer-inner {
+    position: relative;
+
+    width: 1150px;
+    height: 430px;
+
+    margin: 0 auto;
+
+    padding-top: 38px;
+}
+
+
+/* =========================================
+   상단 영역
+========================================= */
+.footer-top {
+    position: relative;
+
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================
+   상단 정책 링크
+========================================= */
+.footer-policy {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 7px;
+
+    font-size: 12px;
+    font-weight: 400;
+}
+
+
+.footer-policy a {
+    color: #333;
+}
+
+
+.footer-policy a.point-link {
+    color: #0099ad;
+
+    font-weight: 600;
+}
+
+
+.footer-policy span {
+    color: #c5c5c5;
+}
+
+
+/* =========================================
+   FOOTER 공통 행
+========================================= */
+.footer-row {
+    width: 100%;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================================
+   제목
+
+   요청사항
+   font-size : 16px
+   font-weight : 500
+========================================= */
+.footer-title {
+    width: 165px;
+
+    flex-shrink: 0;
+
+    padding-top: 5px;
+
+    color: #222;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   나머지 내용
+   요청사항 : 12px
+========================================= */
+.footer-row-content {
+    flex: 1;
+
+    color: #777;
+
+    font-size: 12px;
+    font-weight: 400;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   가맹점 / 제안 버튼
+========================================= */
+.footer-button-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+
+.footer-button-list a {
+    height: 32px;
+
+    padding: 0 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff;
+
+    border: 1px solid #ddd;
+
+    border-radius: 3px;
+
+    color: #333;
+
+    font-size: 12px;
+    font-weight: 400;
+
+    transition: .2s;
+}
+
+
+.footer-button-list a:hover {
+    color: #00a4b8;
+
+    border-color: #00a4b8;
+}
+
+
+/* =========================================
+   사업자 정보
+========================================= */
+.company-info p + p {
+    margin-top: 2px;
+}
+
+
+.company-info a {
+    color: #222;
+
+    text-decoration: underline;
+
+    text-underline-offset: 2px;
+}
+
+
+/* =========================================
+   인증마크
+========================================= */
+.footer-certification {
+    width: 100%;
+
+    margin-top: 13px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 90px;
+}
+
+
+.cert-item {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 12px;
+    font-weight: 400;
+
+    line-height: 1.6;
+}
+
+
+/* 인증 이미지 */
+.cert-item img {
+    display: block;
+
+    width: 65px;
+    height: 48px;
+
+    object-fit: contain;
+}
+
+
+/* =========================================
+   COPYRIGHT + SNS
+========================================= */
+.footer-bottom {
+    width: 100%;
+
+    margin-top: 12px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+.copyright {
+    color: #888;
+
+    font-size: 12px;
+    font-weight: 400;
+}
+
+
+/* SNS */
+.footer-sns {
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+}
+
+
+.footer-sns a {
+    color: #888;
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   FAMILY SITE
+========================================= */
+.family-site {
+    position: relative;
+
+    width: 240px;
+
+    flex-shrink: 0;
+
+    z-index: 100;
+}
+
+
+/* =========================================
+   FAMILY SITE 버튼
+========================================= */
+.family-btn {
+    width: 240px;
+    height: 42px;
+
+    padding: 0 17px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #fff;
+
+    border: 1px solid #d8d8d8;
+
+    color: #222;
+
+    font-size: 12px;
+
+    font-weight: 500;
+}
+
+
+/* 화살표 */
+.family-arrow {
+    font-size: 9px;
+
+    transition: transform .35s ease;
+}
+
+
+/* 메뉴가 열리면 방향 변경 */
+.family-site.open .family-arrow {
+    transform: rotate(180deg);
+}
+
+
+/* =========================================
+   FAMILY SITE 메뉴
+
+   버튼 위쪽으로 올라오도록 설정
+========================================= */
+.family-menu {
+    position: absolute;
+
+    right: 0;
+    bottom: 52px;
+
+    width: 520px;
+
+    background: #fff;
+
+    border-radius: 5px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, .18);
+
+    /* 처음에는 숨김 */
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateY(30px);
+
+    transition:
+        max-height .5s ease,
+        opacity .35s ease,
+        transform .45s ease,
+        visibility .35s;
+}
+
+
+/* =========================================
+   FAMILY SITE OPEN
+
+   아래 → 위로 부드럽게 올라옴
+========================================= */
+.family-site.open .family-menu {
+    max-height: 600px;
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   FAMILY MENU HEADER
+========================================= */
+.family-menu-head {
+    height: 58px;
+
+    padding: 0 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #eee;
+}
+
+
+.family-menu-head strong {
+    color: #222;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+/* X 닫기 */
+.family-close {
+    width: 30px;
+    height: 30px;
+
+    color: #333;
+
+    font-size: 24px;
+
+    line-height: 1;
+}
+
+
+/* =========================================
+   FAMILY SITE LIST
+========================================= */
+.family-list li {
+    border-bottom: 1px solid #eee;
+}
+
+
+.family-list li:last-child {
+    border-bottom: 0;
+}
+
+
+.family-list li a {
+    min-height: 50px;
+
+    padding: 0 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: #2468cf;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    transition: background .2s ease;
+}
+
+
+.family-list li a:hover {
+    background: #f5f6f8;
+}
+
+
+/* =========================================
+   웹접근성 focus
+========================================= */
+.footer a:focus-visible,
+.footer button:focus-visible {
+    outline: 2px solid #00a4b8;
+
+    outline-offset: 3px;
+}
